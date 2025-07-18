@@ -1,4 +1,4 @@
-﻿namespace AsignacionFinal
+﻿namespace AsignacionFinal.Visual
 {
     partial class Form1
     {

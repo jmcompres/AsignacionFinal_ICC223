@@ -1,4 +1,4 @@
-namespace AsignacionFinal
+namespace AsignacionFinal.Visual
 {
     internal static class Program
     {
