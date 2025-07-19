@@ -36,6 +36,10 @@ namespace AsignacionFinal.Visual
             tabControl1 = new TabControl();
             tabMenuPrincipal = new TabPage();
             tabCiudades = new TabPage();
+            btnActualizarTabla = new Button();
+            btnEditar = new Button();
+            btnEliminar = new Button();
+            btnInsertar = new Button();
             lblCiudades = new Label();
             dgvCiudades = new DataGridView();
             tabJugadores = new TabPage();
@@ -76,6 +80,10 @@ namespace AsignacionFinal.Visual
             // 
             // tabCiudades
             // 
+            tabCiudades.Controls.Add(btnActualizarTabla);
+            tabCiudades.Controls.Add(btnEditar);
+            tabCiudades.Controls.Add(btnEliminar);
+            tabCiudades.Controls.Add(btnInsertar);
             tabCiudades.Controls.Add(lblCiudades);
             tabCiudades.Controls.Add(dgvCiudades);
             tabCiudades.Location = new Point(4, 24);
@@ -86,12 +94,51 @@ namespace AsignacionFinal.Visual
             tabCiudades.Text = "Ciudades";
             tabCiudades.UseVisualStyleBackColor = true;
             // 
+            // btnActualizarTabla
+            // 
+            btnActualizarTabla.Location = new Point(339, 304);
+            btnActualizarTabla.Name = "btnActualizarTabla";
+            btnActualizarTabla.Size = new Size(114, 23);
+            btnActualizarTabla.TabIndex = 5;
+            btnActualizarTabla.Text = "Actualizar Listado";
+            btnActualizarTabla.UseVisualStyleBackColor = true;
+            // 
+            // btnEditar
+            // 
+            btnEditar.Location = new Point(170, 304);
+            btnEditar.Name = "btnEditar";
+            btnEditar.Size = new Size(75, 23);
+            btnEditar.TabIndex = 4;
+            btnEditar.Text = "Editar";
+            btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += button1_Click_2;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.Location = new Point(89, 304);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(75, 23);
+            btnEliminar.TabIndex = 3;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            // 
+            // btnInsertar
+            // 
+            btnInsertar.Location = new Point(8, 304);
+            btnInsertar.Name = "btnInsertar";
+            btnInsertar.Size = new Size(75, 23);
+            btnInsertar.TabIndex = 2;
+            btnInsertar.Text = "Insertar";
+            btnInsertar.UseVisualStyleBackColor = true;
+            btnInsertar.Click += button1_Click_1;
+            // 
             // lblCiudades
             // 
             lblCiudades.AutoSize = true;
-            lblCiudades.Location = new Point(8, 26);
+            lblCiudades.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCiudades.Location = new Point(8, 20);
             lblCiudades.Name = "lblCiudades";
-            lblCiudades.Size = new Size(111, 15);
+            lblCiudades.Size = new Size(155, 21);
             lblCiudades.TabIndex = 1;
             lblCiudades.Text = "Listado de ciudades";
             // 
@@ -103,6 +150,8 @@ namespace AsignacionFinal.Visual
             dgvCiudades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCiudades.Location = new Point(8, 44);
             dgvCiudades.Name = "dgvCiudades";
+            dgvCiudades.ReadOnly = true;
+            dgvCiudades.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCiudades.Size = new Size(445, 254);
             dgvCiudades.TabIndex = 0;
             dgvCiudades.CellContentClick += dataGridView1_CellContentClick;
@@ -185,5 +234,9 @@ namespace AsignacionFinal.Visual
         private DataGridView dgvCiudades;
         private BindingSource ciudadBindingSource;
         private Label lblCiudades;
+        private Button btnInsertar;
+        private Button btnEditar;
+        private Button btnEliminar;
+        private Button btnActualizarTabla;
     }
 }
