@@ -17,7 +17,7 @@ namespace AsignacionFinal.BDD
             // Conexión a la base de datos
             using var conn = new SqlConnection(ConfigHelper.ConnectionString);
             // Consulta SQL para obtener todas las ciudades
-            using var cmd = new SqlCommand("SELECT IdCiudad, Nombre FROM Ciudad", conn);
+            using var cmd = new SqlCommand("SELECT IdCiudad, NombreCiudad FROM Ciudad", conn);
             conn.Open();
             using var rdr = cmd.ExecuteReader();
             dt.Load(rdr);
