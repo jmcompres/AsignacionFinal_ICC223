@@ -5,6 +5,7 @@ namespace AsignacionFinal.Visual
         public Form1()
         {
             InitializeComponent();
+            InitializeData();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -15,6 +16,11 @@ namespace AsignacionFinal.Visual
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Probando");
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }
