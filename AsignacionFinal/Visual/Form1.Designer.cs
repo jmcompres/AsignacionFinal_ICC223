@@ -35,6 +35,11 @@ namespace AsignacionFinal.Visual
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl1 = new TabControl();
             tabMenuPrincipal = new TabPage();
+            cmbIdJuegoResumen = new ComboBox();
+            dgvResumen = new DataGridView();
+            btnConsultarResumen = new Button();
+            lblIdResumen = new Label();
+            lblTituloResumenJuego = new Label();
             tabCiudades = new TabPage();
             btnActualizarTabla = new Button();
             btnEditar = new Button();
@@ -66,6 +71,8 @@ namespace AsignacionFinal.Visual
             tabEstads = new TabPage();
             ciudadBindingSource = new BindingSource(components);
             tabControl1.SuspendLayout();
+            tabMenuPrincipal.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvResumen).BeginInit();
             tabCiudades.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCiudades).BeginInit();
             tabJugadores.SuspendLayout();
@@ -94,13 +101,73 @@ namespace AsignacionFinal.Visual
             // 
             // tabMenuPrincipal
             // 
+            tabMenuPrincipal.Controls.Add(cmbIdJuegoResumen);
+            tabMenuPrincipal.Controls.Add(dgvResumen);
+            tabMenuPrincipal.Controls.Add(btnConsultarResumen);
+            tabMenuPrincipal.Controls.Add(lblIdResumen);
+            tabMenuPrincipal.Controls.Add(lblTituloResumenJuego);
             tabMenuPrincipal.Location = new Point(4, 24);
             tabMenuPrincipal.Name = "tabMenuPrincipal";
-            tabMenuPrincipal.Padding = new Padding(3, 3, 3, 3);
+            tabMenuPrincipal.Padding = new Padding(3);
             tabMenuPrincipal.Size = new Size(792, 422);
             tabMenuPrincipal.TabIndex = 0;
-            tabMenuPrincipal.Text = "Menú Principal";
+            tabMenuPrincipal.Text = "Resúmenes de juegos";
             tabMenuPrincipal.UseVisualStyleBackColor = true;
+            // 
+            // cmbIdJuegoResumen
+            // 
+            cmbIdJuegoResumen.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbIdJuegoResumen.FormattingEnabled = true;
+            cmbIdJuegoResumen.Location = new Point(86, 47);
+            cmbIdJuegoResumen.Name = "cmbIdJuegoResumen";
+            cmbIdJuegoResumen.Size = new Size(137, 23);
+            cmbIdJuegoResumen.TabIndex = 5;
+            cmbIdJuegoResumen.SelectedIndexChanged += cmbIdJuegoResumen_SelectedIndexChanged;
+            // 
+            // dgvResumen
+            // 
+            dgvResumen.AllowUserToAddRows = false;
+            dgvResumen.AllowUserToDeleteRows = false;
+            dgvResumen.AllowUserToResizeColumns = false;
+            dgvResumen.AllowUserToResizeRows = false;
+            dgvResumen.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvResumen.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvResumen.Location = new Point(8, 76);
+            dgvResumen.MultiSelect = false;
+            dgvResumen.Name = "dgvResumen";
+            dgvResumen.ReadOnly = true;
+            dgvResumen.Size = new Size(776, 338);
+            dgvResumen.TabIndex = 4;
+            dgvResumen.Visible = false;
+            // 
+            // btnConsultarResumen
+            // 
+            btnConsultarResumen.Location = new Point(240, 47);
+            btnConsultarResumen.Name = "btnConsultarResumen";
+            btnConsultarResumen.Size = new Size(75, 23);
+            btnConsultarResumen.TabIndex = 3;
+            btnConsultarResumen.Text = "Consultar";
+            btnConsultarResumen.UseVisualStyleBackColor = true;
+            btnConsultarResumen.Click += btnConsultarResumen_Click;
+            // 
+            // lblIdResumen
+            // 
+            lblIdResumen.AutoSize = true;
+            lblIdResumen.Location = new Point(8, 50);
+            lblIdResumen.Name = "lblIdResumen";
+            lblIdResumen.Size = new Size(72, 15);
+            lblIdResumen.TabIndex = 1;
+            lblIdResumen.Text = "Id de juego :";
+            // 
+            // lblTituloResumenJuego
+            // 
+            lblTituloResumenJuego.AutoSize = true;
+            lblTituloResumenJuego.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloResumenJuego.Location = new Point(8, 20);
+            lblTituloResumenJuego.Name = "lblTituloResumenJuego";
+            lblTituloResumenJuego.Size = new Size(215, 21);
+            lblTituloResumenJuego.TabIndex = 0;
+            lblTituloResumenJuego.Text = "Consultar resumen de juego";
             // 
             // tabCiudades
             // 
@@ -112,7 +179,7 @@ namespace AsignacionFinal.Visual
             tabCiudades.Controls.Add(dgvCiudades);
             tabCiudades.Location = new Point(4, 24);
             tabCiudades.Name = "tabCiudades";
-            tabCiudades.Padding = new Padding(3, 3, 3, 3);
+            tabCiudades.Padding = new Padding(3);
             tabCiudades.Size = new Size(792, 422);
             tabCiudades.TabIndex = 1;
             tabCiudades.Text = "Ciudades";
@@ -197,7 +264,7 @@ namespace AsignacionFinal.Visual
             tabJugadores.Controls.Add(btnInsertarJugador);
             tabJugadores.Location = new Point(4, 24);
             tabJugadores.Name = "tabJugadores";
-            tabJugadores.Padding = new Padding(3, 3, 3, 3);
+            tabJugadores.Padding = new Padding(3);
             tabJugadores.Size = new Size(792, 422);
             tabJugadores.TabIndex = 2;
             tabJugadores.Text = "Jugadores";
@@ -277,7 +344,7 @@ namespace AsignacionFinal.Visual
             tabEquipos.Controls.Add(lblTituloEquipos);
             tabEquipos.Location = new Point(4, 24);
             tabEquipos.Name = "tabEquipos";
-            tabEquipos.Padding = new Padding(3, 3, 3, 3);
+            tabEquipos.Padding = new Padding(3);
             tabEquipos.Size = new Size(792, 422);
             tabEquipos.TabIndex = 3;
             tabEquipos.Text = "Equipos";
@@ -366,7 +433,7 @@ namespace AsignacionFinal.Visual
             tabJuegos.Controls.Add(lblTituloJuegos);
             tabJuegos.Location = new Point(4, 24);
             tabJuegos.Name = "tabJuegos";
-            tabJuegos.Padding = new Padding(3, 3, 3, 3);
+            tabJuegos.Padding = new Padding(3);
             tabJuegos.Size = new Size(792, 422);
             tabJuegos.TabIndex = 4;
             tabJuegos.Text = "Juegos";
@@ -445,7 +512,7 @@ namespace AsignacionFinal.Visual
             // 
             tabEstads.Location = new Point(4, 24);
             tabEstads.Name = "tabEstads";
-            tabEstads.Padding = new Padding(3, 3, 3, 3);
+            tabEstads.Padding = new Padding(3);
             tabEstads.Size = new Size(792, 422);
             tabEstads.TabIndex = 5;
             tabEstads.Text = "Estadísticas";
@@ -466,6 +533,9 @@ namespace AsignacionFinal.Visual
             Name = "Form1";
             Text = "Gestor de torneo";
             tabControl1.ResumeLayout(false);
+            tabMenuPrincipal.ResumeLayout(false);
+            tabMenuPrincipal.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvResumen).EndInit();
             tabCiudades.ResumeLayout(false);
             tabCiudades.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCiudades).EndInit();
@@ -518,5 +588,10 @@ namespace AsignacionFinal.Visual
         private Button btnEliminarJuego;
         private Button btnInsertarJuego;
         private DataGridView dgvJuegos;
+        private DataGridView dgvResumen;
+        private Button btnConsultarResumen;
+        private Label lblIdResumen;
+        private Label lblTituloResumenJuego;
+        private ComboBox cmbIdJuegoResumen;
     }
 }

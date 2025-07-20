@@ -161,5 +161,25 @@ namespace AsignacionFinal.BDD
                 return false;
             }
         }
+
+        public static DataTable GetResumenJuego(string idJuego)
+        {
+            var dt = new DataTable();
+            try
+            {
+                using var conn = new SqlConnection(ConfigHelper.ConnectionString);
+                using var cmd = new SqlCommand("[dbo].[EstadsEquiposJuego] @id", conn);
+                cmd.Parameters.AddWithValue("@id", idJuego);
+                conn.Open();
+                using var rdr = cmd.ExecuteReader();
+                dt.Load(rdr);
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine("Error al cargar resumen de juego: " + exc.Message);
+            }
+
+            return dt;
+        }
     }
 }
