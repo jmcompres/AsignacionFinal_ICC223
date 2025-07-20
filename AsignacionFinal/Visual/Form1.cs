@@ -109,6 +109,35 @@ namespace AsignacionFinal.Visual
                 }
             }
         }
+        private void btnEditarEquipo_Click(object sender, EventArgs e)
+        {
+            var row = dgvEquipos.CurrentRow;
+            string id = Convert.ToString(row.Cells["ID"].Value).Trim();
+            string nombre = row.Cells["Nombre"].Value.ToString().Trim();
+            string idCiudad = EquipoRepository.GetIdCiudad(id);
+
+            // Abrir el formulario de edición y pre‑llenar
+            using var frm = new FormInsertEquipo("Editar Equipo",id,nombre,idCiudad);
+
+            if (frm.ShowDialog() == DialogResult.OK && frm.equipo != null)
+            {
+                // Asignar Id y llamar al repositorio
+                var actualizado = frm.equipo;
+
+                bool exito = EquipoRepository.Update(actualizado, id);
+                if (exito)
+                {
+                    loadDataEquipo();
+                    MessageBox.Show("Equipo actualizado correctamente.", "Éxito",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo actualizar el equipo.", "Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
 
 
         // Eventos de selección de filas (actualizar el enable de botones para borrar y editar)
@@ -189,6 +218,5 @@ namespace AsignacionFinal.Visual
             }
         }
 
-        
     }
 }

@@ -215,6 +215,7 @@ namespace AsignacionFinal.Visual
             btnEditarEquipo.TabIndex = 6;
             btnEditarEquipo.Text = "Editar";
             btnEditarEquipo.UseVisualStyleBackColor = true;
+            btnEditarEquipo.Click += btnEditarEquipo_Click;
             // 
             // btnEliminarEquipo
             // 

@@ -65,5 +65,51 @@ namespace AsignacionFinal.BDD
                 return false;
             }
         }
+
+        public static bool Update(Equipo e, string previd)
+        {
+            try
+            {
+                using var conn = new SqlConnection(ConfigHelper.ConnectionString);
+                using var cmd = new SqlCommand(
+                    "UPDATE Equipo SET IdEquipo = @ie, Nombre = @n, IdCiudad = @ic WHERE IdEquipo = @id",
+                    conn
+                );
+                cmd.Parameters.AddWithValue("@ie", e.idEquipo);
+                cmd.Parameters.AddWithValue("@n", e.nombre);
+                cmd.Parameters.AddWithValue("@ic", e.idCiudad);
+                cmd.Parameters.AddWithValue("@id", previd);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+
+        public static string GetIdCiudad(string idEquipo)
+        {
+            string idCiudad = "";
+            try
+            {
+                using var conn = new SqlConnection(ConfigHelper.ConnectionString);
+                using var cmd = new SqlCommand("SELECT IdCiudad " +
+                                               "FROM Equipo as eq " +
+                                               "WHERE eq.IdEquipo = @ie", conn);
+                cmd.Parameters.AddWithValue("@ie", idEquipo);
+                conn.Open();
+                using var rdr = cmd.ExecuteReader();
+                if (rdr.Read()) idCiudad = rdr["IdCiudad"].ToString().Trim();
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine("Error al encontrar la ciudad perteneciente al equipo: " + exc.Message);
+            }
+
+            return idCiudad;
+        }
     }
 }

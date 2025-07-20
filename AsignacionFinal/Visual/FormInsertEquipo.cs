@@ -27,19 +27,26 @@ namespace AsignacionFinal.Visual
 
             this.Text = titulo;
             if (titulo != "Nuevo Equipo")
-            {
                 lblTitulo.Text = "Editar Equipo " + nombre + " (" + id + ")";
-                foreach (DataGridViewRow row in dgvCiudades.Rows)
+
+            dgvCiudades.DataBindingComplete += (s, e) =>
+            {
+                if (titulo != "Nuevo Equipo")
                 {
-                    if (row.Cells["Id"].Value != null && row.Cells["ID"].Value.ToString() == idCiudad)
+                    foreach (DataGridViewRow row in dgvCiudades.Rows)
                     {
-                        row.Selected = true;
-                        // Opcional: desplazar la vista a esa fila
-                        dgvCiudades.FirstDisplayedScrollingRowIndex = row.Index;
-                        break;
+                        var cellVal = row.Cells["ID"].Value?.ToString().Trim();
+                        if (cellVal == idCiudad)
+                        {
+                            dgvCiudades.ClearSelection();
+                            row.Selected = true;
+                            dgvCiudades.FirstDisplayedScrollingRowIndex = row.Index;
+                            break;
+                        }
                     }
                 }
-            }
+            };
+
             txtId.Text = id;
             txtNombre.Text = nombre;
 
