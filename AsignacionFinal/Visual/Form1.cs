@@ -14,14 +14,16 @@ namespace AsignacionFinal.Visual
         private void InitializeAllData()
         {
             loadDataCiudad();
+            loadDataEquipo();
         }
 
         private void loadDataCiudad()
         {
             dgvCiudades.DataSource = CiudadRepository.GetAll();
-            dgvCiudades.Columns["idCiudad"].HeaderText = "ID";
-            dgvCiudades.Columns["nombre"].HeaderText = "Nombre";
-            dgvCiudades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        }
+        private void loadDataEquipo()
+        {
+            dgvEquipos.DataSource = EquipoRepository.GetAll();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -53,23 +55,47 @@ namespace AsignacionFinal.Visual
 
             }
         }
+        private void btnInsertarEquipo_Click(object sender, EventArgs e)
+        {
+            while (true)
+            {
+                using var frm = new FormInsertEquipo();
+                var result = frm.ShowDialog();
+
+                if (result != DialogResult.OK || frm.equipo == null)
+                    break; // El usuario canceló o cerró la ventana
+
+                bool exito = EquipoRepository.Insert(frm.equipo);
+                loadDataEquipo();
+                if (exito)
+                {
+                    MessageBox.Show("Equipo insertado correctamente.");
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo insertar el equipo. Verifique los datos.");
+                }
+
+            }
+        }
+
 
         //Esto es para editar una ciudad
         private void button1_Click_2(object sender, EventArgs e)
         {
             var row = dgvCiudades.CurrentRow;
-            string id = Convert.ToString(row.Cells["IdCiudad"].Value).Trim();
+            string id = Convert.ToString(row.Cells["ID"].Value).Trim();
             string nombre = row.Cells["Nombre"].Value.ToString().Trim();
 
             // Abrir el formulario de edición y pre‑llenar
-            using var frm = new FormInsertCiudad("Editar Ciudad",id,nombre);
+            using var frm = new FormInsertCiudad("Editar Ciudad", id, nombre);
 
             if (frm.ShowDialog() == DialogResult.OK && frm.ciudad != null)
             {
                 // Asignar Id y llamar al repositorio
                 var actualizado = frm.ciudad;
 
-                bool exito = CiudadRepository.Update(actualizado,id);
+                bool exito = CiudadRepository.Update(actualizado, id);
                 if (exito)
                 {
                     loadDataCiudad();
@@ -84,21 +110,32 @@ namespace AsignacionFinal.Visual
             }
         }
 
+
+        // Eventos de selección de filas (actualizar el enable de botones para borrar y editar)
         private void dgvCiudades_SelectionChanged(object sender, EventArgs e)
         {
             btnEditar.Enabled = dgvCiudades.SelectedRows.Count == 1;
             btnEliminar.Enabled = dgvCiudades.SelectedRows.Count == 1;
+        }
+        private void dgvEquipos_SelectionChanged(object sender, EventArgs e)
+        {
+            btnEditarEquipo.Enabled = dgvEquipos.SelectedRows.Count == 1;
+            btnEliminarEquipo.Enabled = dgvEquipos.SelectedRows.Count == 1;
         }
 
         private void btnActualizarTabla_Click(object sender, EventArgs e)
         {
             loadDataCiudad();
         }
+        private void btnActualizarListEquipos_Click(object sender, EventArgs e)
+        {
+            loadDataEquipo();
+        }
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             var row = dgvCiudades.CurrentRow;
-            string id = Convert.ToString(row.Cells["IdCiudad"].Value).Trim();
+            string id = Convert.ToString(row.Cells["ID"].Value).Trim();
 
             var confirm = MessageBox.Show(
                 "¿Seguro que deseas eliminar a la ciudad seleccionada?",
@@ -123,5 +160,35 @@ namespace AsignacionFinal.Visual
                 }
             }
         }
+        private void btnEliminarEquipo_Click(object sender, EventArgs e)
+        {
+            var row = dgvEquipos.CurrentRow;
+            string id = Convert.ToString(row.Cells["ID"].Value).Trim();
+
+            var confirm = MessageBox.Show(
+                "¿Seguro que deseas eliminar al equipo seleccionado?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirm == DialogResult.Yes)
+            {
+                bool exito = EquipoRepository.Delete(id);
+                if (exito)
+                {
+                    loadDataEquipo();
+                    MessageBox.Show("Equipo eliminado correctamente.", "Éxito",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo eliminar al equipo. Revise sus relaciones.", "Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        
     }
 }

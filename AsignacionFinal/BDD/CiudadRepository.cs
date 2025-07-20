@@ -20,13 +20,13 @@ namespace AsignacionFinal.BDD
             {
                 using var conn = new SqlConnection(ConfigHelper.ConnectionString);
                 // Consulta SQL para obtener todas las ciudades
-                using var cmd = new SqlCommand("SELECT IdCiudad, Nombre FROM Ciudad", conn);
+                using var cmd = new SqlCommand("SELECT IdCiudad as ID, Nombre FROM Ciudad", conn);
                 conn.Open();
                 using var rdr = cmd.ExecuteReader();
                 dt.Load(rdr);
             }
             catch(Exception exc){
-                Console.WriteLine("Error al cargar clientes: " + exc.Message);
+                Console.WriteLine("Error al cargar ciudades: " + exc.Message);
             }
 
             return dt;
