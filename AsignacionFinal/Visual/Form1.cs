@@ -19,8 +19,8 @@ namespace AsignacionFinal.Visual
         private void loadDataCiudad()
         {
             dgvCiudades.DataSource = CiudadRepository.GetAll();
-            dgvCiudades.Columns["idCiudad"].HeaderText = "ID";
-            dgvCiudades.Columns["nombre"].HeaderText = "Nombre";
+            dgvCiudades.Columns["IdCiudad"].HeaderText = "ID";
+            dgvCiudades.Columns["NombreCiudad"].HeaderText = "Nombre";
             dgvCiudades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
@@ -62,14 +62,14 @@ namespace AsignacionFinal.Visual
             string nombre = row.Cells["Nombre"].Value.ToString().Trim();
 
             // Abrir el formulario de edición y pre‑llenar
-            using var frm = new FormInsertCiudad("Editar Ciudad",id,nombre);
+            using var frm = new FormInsertCiudad("Editar Ciudad", id, nombre);
 
             if (frm.ShowDialog() == DialogResult.OK && frm.ciudad != null)
             {
                 // Asignar Id y llamar al repositorio
                 var actualizado = frm.ciudad;
 
-                bool exito = CiudadRepository.Update(actualizado,id);
+                bool exito = CiudadRepository.Update(actualizado, id);
                 if (exito)
                 {
                     loadDataCiudad();
@@ -122,6 +122,68 @@ namespace AsignacionFinal.Visual
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+
+
+        private void btnEliminarJugador_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnInsertarJugador_Click(object sender, EventArgs e)
+        {
+            while (true)
+            {
+                using var frm = new FormInsertarJugador();
+                var result = frm.ShowDialog();
+                if (result != DialogResult.OK || frm.jugador == null)
+                    break; // El usuario canceló o cerró la ventana
+                bool exito = JugadorRepository.Insert(frm.jugador);
+                btnActualizarListaJugadores.PerformClick();
+                if (exito)
+                {
+                    MessageBox.Show("Jugador insertado correctamente.");
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo insertar el jugador. Verifique los datos.");
+                }
+            }
+        }
+
+        private void btnEditarJugador_Click(object sender, EventArgs e)
+        {
+            /*var row = dgvJugadores.CurrentRow;
+            string id = Convert.ToString(row.Cells["IdJugador"].Value).Trim();
+            string nombre = row.Cells["Nombre"].Value.ToString().Trim();
+            string apellido = row.Cells["Apellido"].Value.ToString().Trim();
+            string posicion = row.Cells["Posicion"].Value.ToString().Trim();
+            string equipo = row.Cells["Equipo"].Value.ToString().Trim();
+            // Abrir el formulario de edición y pre‑llenar
+            using var frm = new FormInsertarJugador("Editar Jugador", id, nombre, apellido, posicion, equipo);
+            if (frm.ShowDialog() == DialogResult.OK && frm.jugador != null)
+            {
+                // Asignar Id y llamar al repositorio
+                var actualizado = frm.jugador;
+                bool exito = JugadorRepository.Update(actualizado, id);
+                if (exito)
+                {
+                    btnActualizarListaJugadores.PerformClick();
+                    MessageBox.Show("Jugador actualizado correctamente.", "Éxito",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo actualizar el jugador.", "Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }*/
+        }
+
+        private void btnActualizarListaJugadores_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -1,10 +1,10 @@
 public class Jugador
 { 
-    private string IdJugador { get; set; }
-    private string IdEquipo { get; set; }
-    private string IdCiudadDeNacimiento { get; set; }
-    private DateTime FechaNacimiento { get; set; }
-    private string NumeroJugador { get; set; }
-    private string NombreJugador { get; set; }
+    public string IdJugador { get; set; }
+    public string IdEquipo { get; set; }
+    public string IdCiudadDeNacimiento { get; set; }
+    public DateTime FechaNacimiento { get; set; }
+    public string NumeroJugador { get; set; }
+    public string NombreJugador { get; set; }
 
 }
