@@ -112,10 +112,10 @@ namespace AsignacionFinal.Visual
             // dgvEquipos
             // 
             dgvEquipos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEquipos.Location = new Point(451, 83);
+            dgvEquipos.Location = new Point(440, 83);
             dgvEquipos.Name = "dgvEquipos";
             dgvEquipos.RowHeadersWidth = 51;
-            dgvEquipos.Size = new Size(300, 188);
+            dgvEquipos.Size = new Size(325, 188);
             dgvEquipos.TabIndex = 7;
             dgvEquipos.CellContentClick += dgvEquipos_CellContentClick;
             // 
@@ -125,7 +125,7 @@ namespace AsignacionFinal.Visual
             dgvCiudades.Location = new Point(47, 83);
             dgvCiudades.Name = "dgvCiudades";
             dgvCiudades.RowHeadersWidth = 51;
-            dgvCiudades.Size = new Size(300, 188);
+            dgvCiudades.Size = new Size(325, 188);
             dgvCiudades.TabIndex = 8;
             // 
             // txtNumero
@@ -138,12 +138,14 @@ namespace AsignacionFinal.Visual
             // 
             // btnInsertar
             // 
+            btnInsertar.Enabled = false;
             btnInsertar.Location = new Point(570, 406);
             btnInsertar.Name = "btnInsertar";
             btnInsertar.Size = new Size(94, 29);
             btnInsertar.TabIndex = 10;
             btnInsertar.Text = "Insertar";
             btnInsertar.UseVisualStyleBackColor = true;
+            btnInsertar.Click += btnInsertar_Click_1;
             // 
             // btnCancelar
             // 
@@ -159,7 +161,7 @@ namespace AsignacionFinal.Visual
             // 
             dtpFechaNacim.Location = new Point(173, 330);
             dtpFechaNacim.Name = "dtpFechaNacim";
-            dtpFechaNacim.Size = new Size(250, 27);
+            dtpFechaNacim.Size = new Size(113, 27);
             dtpFechaNacim.TabIndex = 12;
             // 
             // txtId
@@ -174,7 +176,8 @@ namespace AsignacionFinal.Visual
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(824, 478);
+            ControlBox = false;
             Controls.Add(txtId);
             Controls.Add(dtpFechaNacim);
             Controls.Add(btnCancelar);
@@ -189,6 +192,7 @@ namespace AsignacionFinal.Visual
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "FormInsertarJugador";
             Text = "Insertar Jugador";
             ((System.ComponentModel.ISupportInitialize)dgvEquipos).EndInit();

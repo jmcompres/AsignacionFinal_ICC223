@@ -2,6 +2,7 @@ using System;
 using System.Data;
 using Microsoft.Data.SqlClient;
 using AsignacionFinal.Modelos;
+using System.Windows.Forms;
 
 namespace AsignacionFinal.BDD
 {
@@ -14,7 +15,7 @@ namespace AsignacionFinal.BDD
             {
                 using var conn = new SqlConnection(ConfigHelper.ConnectionString);
                 using var cmd = new SqlCommand(
-                    "SELECT IdJugador, IdEquipo, IdCiudadDeNacimiento, FechaNacimiento, NumeroJugador, NombreJugador FROM Jugador", conn);
+                    "SELECT IdJugador, IdEquipo, IdCiudadNacimiento, FechaNacimiento, NumeroJugador, NombreJugador FROM Jugador", conn);
                 conn.Open();
                 using var rdr = cmd.ExecuteReader();
                 dt.Load(rdr);
@@ -31,13 +32,13 @@ namespace AsignacionFinal.BDD
             try
             {
                 const string sql = @"INSERT INTO Jugador
-                    (IdJugador, IdEquipo, IdCiudadDeNacimiento, FechaNacimiento, NumeroJugador, NombreJugador)
+                    (IdJugador, IdEquipo, IdCiudadNacimiento, FechaNacimiento, NumeroJugador, NombreJugador)
                     VALUES (@i, @e, @c, @f, @n, @nj)";
                 using var conn = new SqlConnection(ConfigHelper.ConnectionString);
                 using var cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@i", j.IdJugador);
                 cmd.Parameters.AddWithValue("@e", j.IdEquipo);
-                cmd.Parameters.AddWithValue("@c", j.IdCiudadDeNacimiento);
+                cmd.Parameters.AddWithValue("@c", j.IdCiudadNacimiento);
                 cmd.Parameters.AddWithValue("@f", j.FechaNacimiento);
                 cmd.Parameters.AddWithValue("@n", j.NumeroJugador);
                 cmd.Parameters.AddWithValue("@nj", j.NombreJugador);
@@ -45,8 +46,9 @@ namespace AsignacionFinal.BDD
                 cmd.ExecuteNonQuery();
                 return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                MessageBox.Show("Error al insertar jugador: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -77,14 +79,14 @@ namespace AsignacionFinal.BDD
                     @"UPDATE Jugador SET 
                         IdJugador = @i, 
                         IdEquipo = @e, 
-                        IdCiudadDeNacimiento = @c, 
+                        IdCiudadNacimiento = @c, 
                         FechaNacimiento = @f, 
                         NumeroJugador = @n, 
                         NombreJugador = @nj
                       WHERE IdJugador = @id", conn);
                 cmd.Parameters.AddWithValue("@i", j.IdJugador);
                 cmd.Parameters.AddWithValue("@e", j.IdEquipo);
-                cmd.Parameters.AddWithValue("@c", j.IdCiudadDeNacimiento);
+                cmd.Parameters.AddWithValue("@c", j.IdCiudadNacimiento);
                 cmd.Parameters.AddWithValue("@f", j.FechaNacimiento);
                 cmd.Parameters.AddWithValue("@n", j.NumeroJugador);
                 cmd.Parameters.AddWithValue("@nj", j.NombreJugador);

@@ -1,4 +1,5 @@
 ﻿using AsignacionFinal.BDD;
+using System.Data;
 using System.Windows.Forms;
 
 namespace AsignacionFinal.Visual
@@ -15,6 +16,7 @@ namespace AsignacionFinal.Visual
         {
             loadDataCiudad();
             loadDataEquipo();
+            loadDataJugador();
         }
 
         private void loadDataCiudad()
@@ -24,6 +26,44 @@ namespace AsignacionFinal.Visual
         private void loadDataEquipo()
         {
             dgvEquipos.DataSource = EquipoRepository.GetAll();
+        }
+
+        private void loadDataJugador()
+        {
+            var dt = JugadorRepository.GetAll();
+
+            dgvJugadores.DataSource = null;
+            dgvJugadores.Columns.Clear();
+
+            dgvJugadores.AutoGenerateColumns = false;
+            dgvJugadores.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvJugadores.MultiSelect = false;
+
+            dgvJugadores.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "IdJugador",
+                HeaderText = "ID",
+                Name = "IdJugador",
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
+            dgvJugadores.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                DataPropertyName = "NombreJugador",
+                HeaderText = "Nombre",
+                Name = "NombreJugador",
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
+            });
+
+            dgvJugadores.DataSource = dt;
+
+            // Selecciona la primera fila (ambas columnas quedarán resaltadas si hay datos)
+            if (dgvJugadores.Rows.Count > 0)
+            {
+                dgvJugadores.ClearSelection();
+                dgvJugadores.Rows[0].Selected = true;
+            }
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -84,8 +124,8 @@ namespace AsignacionFinal.Visual
         private void button1_Click_2(object sender, EventArgs e)
         {
             var row = dgvCiudades.CurrentRow;
-            string id = Convert.ToString(row.Cells["ID"].Value).Trim();
-            string nombre = row.Cells["Nombre"].Value.ToString().Trim();
+            string id = Convert.ToString(row.Cells["IdCiudad"].Value).Trim();
+            string nombre = row.Cells["NombreCiudad"].Value.ToString().Trim();
 
             // Abrir el formulario de edición y pre‑llenar
             using var frm = new FormInsertCiudad("Editar Ciudad", id, nombre);
@@ -117,7 +157,7 @@ namespace AsignacionFinal.Visual
             string idCiudad = EquipoRepository.GetIdCiudad(id);
 
             // Abrir el formulario de edición y pre‑llenar
-            using var frm = new FormInsertEquipo("Editar Equipo",id,nombre,idCiudad);
+            using var frm = new FormInsertEquipo("Editar Equipo", id, nombre, idCiudad);
 
             if (frm.ShowDialog() == DialogResult.OK && frm.equipo != null)
             {
@@ -152,6 +192,13 @@ namespace AsignacionFinal.Visual
             btnEliminarEquipo.Enabled = dgvEquipos.SelectedRows.Count == 1;
         }
 
+        // Agrega este método para manejar la selección de filas y activar los botones
+        private void dgvJugadores_SelectionChanged(object sender, EventArgs e)
+        {
+            btnEditarJugador.Enabled = dgvJugadores.SelectedRows.Count == 1;
+            btnEliminarJugador.Enabled = dgvJugadores.SelectedRows.Count == 1;
+        }
+
         private void btnActualizarTabla_Click(object sender, EventArgs e)
         {
             loadDataCiudad();
@@ -164,7 +211,7 @@ namespace AsignacionFinal.Visual
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             var row = dgvCiudades.CurrentRow;
-            string id = Convert.ToString(row.Cells["ID"].Value).Trim();
+            string id = Convert.ToString(row.Cells["IdCiudad"].Value).Trim();
 
             var confirm = MessageBox.Show(
                 "¿Seguro que deseas eliminar a la ciudad seleccionada?",
@@ -194,7 +241,42 @@ namespace AsignacionFinal.Visual
 
         private void btnEliminarJugador_Click(object sender, EventArgs e)
         {
+            if (dgvJugadores.CurrentRow == null)
+            {
+                MessageBox.Show("Selecciona un jugador para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            string id = Convert.ToString(dgvJugadores.CurrentRow.Cells["IdJugador"].Value)?.Trim() ?? "";
+
+            if (string.IsNullOrEmpty(id))
+            {
+                MessageBox.Show("No se pudo obtener el ID del jugador seleccionado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            var confirm = MessageBox.Show(
+                "¿Seguro que deseas eliminar al jugador seleccionado?",
+                "Confirmar eliminación",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (confirm == DialogResult.Yes)
+            {
+                bool exito = JugadorRepository.Delete(id);
+                if (exito)
+                {
+                    loadDataJugador();
+                    MessageBox.Show("Jugador eliminado correctamente.", "Éxito",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo eliminar al jugador. Revise sus relaciones.", "Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void btnInsertarJugador_Click(object sender, EventArgs e)
@@ -220,22 +302,39 @@ namespace AsignacionFinal.Visual
 
         private void btnEditarJugador_Click(object sender, EventArgs e)
         {
-            /*var row = dgvJugadores.CurrentRow;
-            string id = Convert.ToString(row.Cells["IdJugador"].Value).Trim();
-            string nombre = row.Cells["Nombre"].Value.ToString().Trim();
-            string apellido = row.Cells["Apellido"].Value.ToString().Trim();
-            string posicion = row.Cells["Posicion"].Value.ToString().Trim();
-            string equipo = row.Cells["Equipo"].Value.ToString().Trim();
-            // Abrir el formulario de edición y pre‑llenar
-            using var frm = new FormInsertarJugador("Editar Jugador", id, nombre, apellido, posicion, equipo);
+            if (dgvJugadores.CurrentRow == null)
+            {
+                MessageBox.Show("Selecciona un jugador para editar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Obtén los datos del jugador seleccionado
+            string id = dgvJugadores.CurrentRow.Cells["IdJugador"].Value?.ToString() ?? "";
+            // Si necesitas más datos, obténlos de la base de datos o DataTable
+            var dt = JugadorRepository.GetAll();
+            var row = dt.Rows.Cast<DataRow>().FirstOrDefault(r => r["IdJugador"].ToString() == id);
+            if (row == null)
+            {
+                MessageBox.Show("No se pudo encontrar el jugador.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            var jugadorEditar = new Jugador
+            {
+                IdJugador = row["IdJugador"].ToString(),
+                IdEquipo = row["IdEquipo"].ToString(),
+                IdCiudadNacimiento = row["IdCiudadNacimiento"].ToString(),
+                FechaNacimiento = Convert.ToDateTime(row["FechaNacimiento"]),
+                NumeroJugador = row["NumeroJugador"].ToString(),
+                NombreJugador = row["NombreJugador"].ToString()
+            };
+
+            using var frm = new FormInsertarJugador(jugadorEditar);
             if (frm.ShowDialog() == DialogResult.OK && frm.jugador != null)
             {
-                // Asignar Id y llamar al repositorio
-                var actualizado = frm.jugador;
-                bool exito = JugadorRepository.Update(actualizado, id);
+                bool exito = JugadorRepository.Update(frm.jugador, id);
                 if (exito)
                 {
-                    btnActualizarListaJugadores.PerformClick();
+                    loadDataJugador();
                     MessageBox.Show("Jugador actualizado correctamente.", "Éxito",
                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -244,12 +343,12 @@ namespace AsignacionFinal.Visual
                     MessageBox.Show("No se pudo actualizar el jugador.", "Error",
                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }*/
+            }
         }
 
         private void btnActualizarListaJugadores_Click(object sender, EventArgs e)
         {
-
+            dgvJugadores.DataSource = JugadorRepository.GetAll();
         }
         private void btnEliminarEquipo_Click(object sender, EventArgs e)
         {
@@ -279,6 +378,5 @@ namespace AsignacionFinal.Visual
                 }
             }
         }
-
     }
 }

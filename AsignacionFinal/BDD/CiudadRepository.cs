@@ -26,7 +26,7 @@ namespace AsignacionFinal.BDD
                 dt.Load(rdr);
             }
             catch(Exception exc){
-                Console.WriteLine("Error al cargar clientes: " + exc.Message);
+                Console.WriteLine("Error al cargar ciudades: " + exc.Message);
             }
 
             return dt;
@@ -74,7 +74,7 @@ namespace AsignacionFinal.BDD
             {
                 using var conn = new SqlConnection(ConfigHelper.ConnectionString);
                 using var cmd = new SqlCommand(
-                    "UPDATE Ciudad SET IdCiudad = @i, Nombre = @n WHERE IdCiudad = @id",
+                    "UPDATE Ciudad SET IdCiudad = @i, NombreCiudad = @n WHERE IdCiudad = @id",
                     conn
                 );
                 cmd.Parameters.AddWithValue("@i", c.idCiudad);

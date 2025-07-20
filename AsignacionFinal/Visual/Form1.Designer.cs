@@ -43,6 +43,7 @@ namespace AsignacionFinal.Visual
             lblCiudades = new Label();
             dgvCiudades = new DataGridView();
             tabJugadores = new TabPage();
+            label1 = new Label();
             dgvJugadores = new DataGridView();
             btnActualizarListaJugadores = new Button();
             btnEliminarJugador = new Button();
@@ -61,10 +62,10 @@ namespace AsignacionFinal.Visual
             tabControl1.SuspendLayout();
             tabCiudades.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCiudades).BeginInit();
-            tabEquipos.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvEquipos).BeginInit();
             tabJugadores.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvJugadores).BeginInit();
+            tabEquipos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvEquipos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ciudadBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -188,6 +189,7 @@ namespace AsignacionFinal.Visual
             // 
             // tabJugadores
             // 
+            tabJugadores.Controls.Add(label1);
             tabJugadores.Controls.Add(dgvJugadores);
             tabJugadores.Controls.Add(btnActualizarListaJugadores);
             tabJugadores.Controls.Add(btnEliminarJugador);
@@ -202,10 +204,20 @@ namespace AsignacionFinal.Visual
             tabJugadores.Text = "Jugadores";
             tabJugadores.UseVisualStyleBackColor = true;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label1.Location = new Point(21, 27);
+            label1.Name = "label1";
+            label1.Size = new Size(205, 28);
+            label1.TabIndex = 5;
+            label1.Text = "Listado de Jugadores";
+            // 
             // dgvJugadores
             // 
             dgvJugadores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvJugadores.Location = new Point(21, 25);
+            dgvJugadores.Location = new Point(21, 59);
             dgvJugadores.Name = "dgvJugadores";
             dgvJugadores.RowHeadersWidth = 51;
             dgvJugadores.Size = new Size(462, 282);
@@ -213,8 +225,7 @@ namespace AsignacionFinal.Visual
             // 
             // btnActualizarListaJugadores
             // 
-            btnActualizarListaJugadores.Enabled = false;
-            btnActualizarListaJugadores.Location = new Point(396, 324);
+            btnActualizarListaJugadores.Location = new Point(391, 358);
             btnActualizarListaJugadores.Name = "btnActualizarListaJugadores";
             btnActualizarListaJugadores.Size = new Size(94, 29);
             btnActualizarListaJugadores.TabIndex = 3;
@@ -224,8 +235,7 @@ namespace AsignacionFinal.Visual
             // 
             // btnEliminarJugador
             // 
-            btnEliminarJugador.Enabled = false;
-            btnEliminarJugador.Location = new Point(121, 324);
+            btnEliminarJugador.Location = new Point(121, 358);
             btnEliminarJugador.Name = "btnEliminarJugador";
             btnEliminarJugador.Size = new Size(94, 29);
             btnEliminarJugador.TabIndex = 2;
@@ -235,8 +245,7 @@ namespace AsignacionFinal.Visual
             // 
             // btnEditarJugador
             // 
-            btnEditarJugador.Enabled = false;
-            btnEditarJugador.Location = new Point(221, 324);
+            btnEditarJugador.Location = new Point(221, 358);
             btnEditarJugador.Name = "btnEditarJugador";
             btnEditarJugador.Size = new Size(94, 29);
             btnEditarJugador.TabIndex = 1;
@@ -246,7 +255,7 @@ namespace AsignacionFinal.Visual
             // 
             // btnInsertarJugador
             // 
-            btnInsertarJugador.Location = new Point(21, 324);
+            btnInsertarJugador.Location = new Point(21, 358);
             btnInsertarJugador.Name = "btnInsertarJugador";
             btnInsertarJugador.Size = new Size(94, 29);
             btnInsertarJugador.TabIndex = 0;
@@ -262,7 +271,6 @@ namespace AsignacionFinal.Visual
             tabEquipos.Controls.Add(btnInsertarEquipo);
             tabEquipos.Controls.Add(dgvEquipos);
             tabEquipos.Controls.Add(lblTituloEquipos);
-            tabEquipos.Location = new Point(4, 24);
             tabEquipos.Location = new Point(4, 29);
             tabEquipos.Margin = new Padding(3, 4, 3, 4);
             tabEquipos.Name = "tabEquipos";
@@ -324,6 +332,7 @@ namespace AsignacionFinal.Visual
             dgvEquipos.MultiSelect = false;
             dgvEquipos.Name = "dgvEquipos";
             dgvEquipos.ReadOnly = true;
+            dgvEquipos.RowHeadersWidth = 51;
             dgvEquipos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvEquipos.Size = new Size(519, 254);
             dgvEquipos.TabIndex = 3;
@@ -335,7 +344,7 @@ namespace AsignacionFinal.Visual
             lblTituloEquipos.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTituloEquipos.Location = new Point(8, 20);
             lblTituloEquipos.Name = "lblTituloEquipos";
-            lblTituloEquipos.Size = new Size(149, 21);
+            lblTituloEquipos.Size = new Size(185, 28);
             lblTituloEquipos.TabIndex = 2;
             lblTituloEquipos.Text = "Listado de equipos";
             // 
@@ -380,11 +389,12 @@ namespace AsignacionFinal.Visual
             tabCiudades.ResumeLayout(false);
             tabCiudades.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCiudades).EndInit();
+            tabJugadores.ResumeLayout(false);
+            tabJugadores.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvJugadores).EndInit();
             tabEquipos.ResumeLayout(false);
             tabEquipos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvEquipos).EndInit();
-            tabJugadores.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvJugadores).EndInit();
             ((System.ComponentModel.ISupportInitialize)ciudadBindingSource).EndInit();
             ResumeLayout(false);
         }
@@ -416,5 +426,6 @@ namespace AsignacionFinal.Visual
         private Button btnInsertarJugador;
         private Button btnActualizarListaJugadores;
         private DataGridView dgvJugadores;
+        private Label label1;
     }
 }
