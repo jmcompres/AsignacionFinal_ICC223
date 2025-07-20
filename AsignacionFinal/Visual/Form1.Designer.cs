@@ -69,6 +69,16 @@ namespace AsignacionFinal.Visual
             dgvJuegos = new DataGridView();
             lblTituloJuegos = new Label();
             tabEstads = new TabPage();
+            btnActualizarEstadJuego = new Button();
+            spnCantEstad = new NumericUpDown();
+            cmbTipoEstad = new ComboBox();
+            lblCantidad = new Label();
+            lblTipoEstad = new Label();
+            dgvJugadorPEstad = new DataGridView();
+            label3 = new Label();
+            dgvJuegoPEstad = new DataGridView();
+            label2 = new Label();
+            lblTituloEstads = new Label();
             ciudadBindingSource = new BindingSource(components);
             tabControl1.SuspendLayout();
             tabMenuPrincipal.SuspendLayout();
@@ -81,6 +91,10 @@ namespace AsignacionFinal.Visual
             ((System.ComponentModel.ISupportInitialize)dgvEquipos).BeginInit();
             tabJuegos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvJuegos).BeginInit();
+            tabEstads.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)spnCantEstad).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvJugadorPEstad).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvJuegoPEstad).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ciudadBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -510,6 +524,16 @@ namespace AsignacionFinal.Visual
             // 
             // tabEstads
             // 
+            tabEstads.Controls.Add(btnActualizarEstadJuego);
+            tabEstads.Controls.Add(spnCantEstad);
+            tabEstads.Controls.Add(cmbTipoEstad);
+            tabEstads.Controls.Add(lblCantidad);
+            tabEstads.Controls.Add(lblTipoEstad);
+            tabEstads.Controls.Add(dgvJugadorPEstad);
+            tabEstads.Controls.Add(label3);
+            tabEstads.Controls.Add(dgvJuegoPEstad);
+            tabEstads.Controls.Add(label2);
+            tabEstads.Controls.Add(lblTituloEstads);
             tabEstads.Location = new Point(4, 24);
             tabEstads.Name = "tabEstads";
             tabEstads.Padding = new Padding(3);
@@ -517,6 +541,112 @@ namespace AsignacionFinal.Visual
             tabEstads.TabIndex = 5;
             tabEstads.Text = "Estadísticas";
             tabEstads.UseVisualStyleBackColor = true;
+            // 
+            // btnActualizarEstadJuego
+            // 
+            btnActualizarEstadJuego.Enabled = false;
+            btnActualizarEstadJuego.Location = new Point(277, 369);
+            btnActualizarEstadJuego.Name = "btnActualizarEstadJuego";
+            btnActualizarEstadJuego.Size = new Size(75, 23);
+            btnActualizarEstadJuego.TabIndex = 9;
+            btnActualizarEstadJuego.Text = "Actualizar";
+            btnActualizarEstadJuego.UseVisualStyleBackColor = true;
+            btnActualizarEstadJuego.Click += btnActualizarEstadJuego_Click;
+            // 
+            // spnCantEstad
+            // 
+            spnCantEstad.Location = new Point(101, 369);
+            spnCantEstad.Maximum = new decimal(new int[] { int.MaxValue, 0, 0, 0 });
+            spnCantEstad.Name = "spnCantEstad";
+            spnCantEstad.Size = new Size(144, 23);
+            spnCantEstad.TabIndex = 8;
+            spnCantEstad.ValueChanged += spnCantEstad_ValueChanged;
+            // 
+            // cmbTipoEstad
+            // 
+            cmbTipoEstad.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbTipoEstad.FormattingEnabled = true;
+            cmbTipoEstad.Location = new Point(101, 340);
+            cmbTipoEstad.Name = "cmbTipoEstad";
+            cmbTipoEstad.Size = new Size(144, 23);
+            cmbTipoEstad.TabIndex = 7;
+            cmbTipoEstad.SelectedIndexChanged += cmbTipoEstad_SelectedIndexChanged;
+            // 
+            // lblCantidad
+            // 
+            lblCantidad.AutoSize = true;
+            lblCantidad.Location = new Point(34, 372);
+            lblCantidad.Name = "lblCantidad";
+            lblCantidad.Size = new Size(61, 15);
+            lblCantidad.TabIndex = 6;
+            lblCantidad.Text = "Cantidad :";
+            // 
+            // lblTipoEstad
+            // 
+            lblTipoEstad.AutoSize = true;
+            lblTipoEstad.Location = new Point(8, 342);
+            lblTipoEstad.Name = "lblTipoEstad";
+            lblTipoEstad.Size = new Size(87, 15);
+            lblTipoEstad.TabIndex = 5;
+            lblTipoEstad.Text = "Tipo de estad. :";
+            // 
+            // dgvJugadorPEstad
+            // 
+            dgvJugadorPEstad.AllowUserToAddRows = false;
+            dgvJugadorPEstad.AllowUserToDeleteRows = false;
+            dgvJugadorPEstad.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvJugadorPEstad.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvJugadorPEstad.Location = new Point(80, 194);
+            dgvJugadorPEstad.MultiSelect = false;
+            dgvJugadorPEstad.Name = "dgvJugadorPEstad";
+            dgvJugadorPEstad.ReadOnly = true;
+            dgvJugadorPEstad.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvJugadorPEstad.Size = new Size(679, 130);
+            dgvJugadorPEstad.TabIndex = 4;
+            dgvJugadorPEstad.SelectionChanged += dgvJugadorPEstad_SelectionChanged;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(8, 194);
+            label3.Name = "label3";
+            label3.Size = new Size(55, 15);
+            label3.TabIndex = 3;
+            label3.Text = "Jugador :";
+            // 
+            // dgvJuegoPEstad
+            // 
+            dgvJuegoPEstad.AllowUserToAddRows = false;
+            dgvJuegoPEstad.AllowUserToDeleteRows = false;
+            dgvJuegoPEstad.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvJuegoPEstad.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvJuegoPEstad.Location = new Point(80, 50);
+            dgvJuegoPEstad.MultiSelect = false;
+            dgvJuegoPEstad.Name = "dgvJuegoPEstad";
+            dgvJuegoPEstad.ReadOnly = true;
+            dgvJuegoPEstad.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvJuegoPEstad.Size = new Size(679, 130);
+            dgvJuegoPEstad.TabIndex = 2;
+            dgvJuegoPEstad.SelectionChanged += dgvJuegoPEstad_SelectionChanged;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(19, 50);
+            label2.Name = "label2";
+            label2.Size = new Size(44, 15);
+            label2.TabIndex = 1;
+            label2.Text = "Juego :";
+            // 
+            // lblTituloEstads
+            // 
+            lblTituloEstads.AutoSize = true;
+            lblTituloEstads.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloEstads.Location = new Point(8, 20);
+            lblTituloEstads.Name = "lblTituloEstads";
+            lblTituloEstads.Size = new Size(237, 21);
+            lblTituloEstads.TabIndex = 0;
+            lblTituloEstads.Text = "Gestionar estadísticas de juego";
             // 
             // ciudadBindingSource
             // 
@@ -548,6 +678,11 @@ namespace AsignacionFinal.Visual
             tabJuegos.ResumeLayout(false);
             tabJuegos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvJuegos).EndInit();
+            tabEstads.ResumeLayout(false);
+            tabEstads.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)spnCantEstad).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvJugadorPEstad).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvJuegoPEstad).EndInit();
             ((System.ComponentModel.ISupportInitialize)ciudadBindingSource).EndInit();
             ResumeLayout(false);
         }
@@ -593,5 +728,15 @@ namespace AsignacionFinal.Visual
         private Label lblIdResumen;
         private Label lblTituloResumenJuego;
         private ComboBox cmbIdJuegoResumen;
+        private Label label2;
+        private Label lblTituloEstads;
+        private Label label3;
+        private DataGridView dgvJuegoPEstad;
+        private DataGridView dgvJugadorPEstad;
+        private ComboBox cmbTipoEstad;
+        private Label lblCantidad;
+        private Label lblTipoEstad;
+        private NumericUpDown spnCantEstad;
+        private Button btnActualizarEstadJuego;
     }
 }

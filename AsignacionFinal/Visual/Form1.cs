@@ -8,11 +8,14 @@ namespace AsignacionFinal.Visual
 {
     public partial class Form1 : Form
     {
+        private int prevValCantEstad;
+
         public Form1()
         {
             InitializeComponent();
             InitializeAllData();
             initResumen();
+            initCmbTipoEstad();
         }
 
         private void InitializeAllData()
@@ -35,6 +38,7 @@ namespace AsignacionFinal.Visual
         private void loadDataJuego()
         {
             dgvJuegos.DataSource = JuegoRepository.GetAll();
+            dgvJuegoPEstad.DataSource = JuegoRepository.GetAll();
             updateCmbResumen();
         }
 
@@ -564,6 +568,94 @@ namespace AsignacionFinal.Visual
             cmbIdJuegoResumen.ValueMember = "ID";
             cmbIdJuegoResumen.SelectedIndex = -1;
             dgvResumen.Visible = false;
+        }
+
+        private void initCmbTipoEstad()
+        {
+            cmbTipoEstad.DataSource = EstadsRepository.GetAll();
+            cmbTipoEstad.DisplayMember = "Descripcion";     // Lo que se ve en la lista
+            cmbTipoEstad.ValueMember = "IdEstadistica";
+            cmbIdJuegoResumen.SelectedIndex = -1;
+        }
+
+        private void dgvJuegoPEstad_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvJuegoPEstad.SelectedRows.Count <= 0)
+            {
+                dgvJugadorPEstad.DataSource = null;
+                dgvJugadorPEstad.Enabled = false;
+                dgvJugadorPEstad.ClearSelection();
+            }
+            else
+            {
+                dgvJugadorPEstad.Enabled = true;
+                dgvJugadorPEstad.DataSource = JuegoRepository.GetJugadoresJuego(
+                    dgvJuegoPEstad.SelectedRows[0].Cells["ID"].Value.ToString().Trim()
+                );
+            }
+        }
+
+        private void dgvJugadorPEstad_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvJugadorPEstad.SelectedRows.Count == 0)
+            {
+                cmbTipoEstad.SelectedIndex = -1;
+                cmbTipoEstad.Enabled = false;
+            }
+            else cmbTipoEstad.Enabled = true;
+        }
+
+        private void cmbTipoEstad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbTipoEstad.SelectedIndex >= 0 && dgvJuegoPEstad.Rows.Count > 0 && dgvJugadorPEstad.Rows.Count > 0)
+            {
+                prevValCantEstad = EstadsRepository.getCantEstadJuego(
+                    dgvJuegoPEstad.SelectedRows[0].Cells["ID"].Value.ToString().Trim(),
+                    cmbTipoEstad.SelectedValue.ToString().Trim(),
+                    dgvJugadorPEstad.SelectedRows[0].Cells["IdJugador"].Value.ToString().Trim()
+                );
+                spnCantEstad.Value = prevValCantEstad;
+                spnCantEstad.Enabled = true;
+            }
+            else spnCantEstad.Enabled = false;
+        }
+
+        private void spnCantEstad_ValueChanged(object sender, EventArgs e)
+        {
+            if (spnCantEstad.Enabled == true && spnCantEstad.Value != prevValCantEstad)
+                btnActualizarEstadJuego.Enabled = true;
+            else btnActualizarEstadJuego.Enabled = false;
+        }
+
+        private void btnActualizarEstadJuego_Click(object sender, EventArgs e)
+        {
+            bool exito = true;
+
+            if (prevValCantEstad == 0)
+            {
+                exito = EstadsRepository.Insert(
+                        dgvJuegoPEstad.SelectedRows[0].Cells["ID"].Value.ToString().Trim(),
+                        cmbTipoEstad.SelectedValue.ToString().Trim(),
+                        dgvJugadorPEstad.SelectedRows[0].Cells["IdJugador"].Value.ToString().Trim(),
+                        Convert.ToInt32(spnCantEstad.Value)
+                     );
+                
+            }
+            
+
+            if (exito)
+            {
+                updateCmbResumen();
+                MessageBox.Show("Estadística de juego actualizada correctamente", "Éxito",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                prevValCantEstad = Convert.ToInt32(spnCantEstad.Value);
+                btnActualizarEstadJuego.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("No se pudo actualizar la estadística de juego.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
