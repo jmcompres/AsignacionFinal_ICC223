@@ -49,12 +49,20 @@ namespace AsignacionFinal.Visual
             btnEditarJugador = new Button();
             btnInsertarJugador = new Button();
             tabEquipos = new TabPage();
+            btnActualizarListEquipos = new Button();
+            btnEditarEquipo = new Button();
+            btnEliminarEquipo = new Button();
+            btnInsertarEquipo = new Button();
+            dgvEquipos = new DataGridView();
+            lblTituloEquipos = new Label();
             tabJuegos = new TabPage();
             tabEstads = new TabPage();
             ciudadBindingSource = new BindingSource(components);
             tabControl1.SuspendLayout();
             tabCiudades.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCiudades).BeginInit();
+            tabEquipos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvEquipos).BeginInit();
             tabJugadores.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvJugadores).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ciudadBindingSource).BeginInit();
@@ -248,6 +256,13 @@ namespace AsignacionFinal.Visual
             // 
             // tabEquipos
             // 
+            tabEquipos.Controls.Add(btnActualizarListEquipos);
+            tabEquipos.Controls.Add(btnEditarEquipo);
+            tabEquipos.Controls.Add(btnEliminarEquipo);
+            tabEquipos.Controls.Add(btnInsertarEquipo);
+            tabEquipos.Controls.Add(dgvEquipos);
+            tabEquipos.Controls.Add(lblTituloEquipos);
+            tabEquipos.Location = new Point(4, 24);
             tabEquipos.Location = new Point(4, 29);
             tabEquipos.Margin = new Padding(3, 4, 3, 4);
             tabEquipos.Name = "tabEquipos";
@@ -256,6 +271,73 @@ namespace AsignacionFinal.Visual
             tabEquipos.TabIndex = 3;
             tabEquipos.Text = "Equipos";
             tabEquipos.UseVisualStyleBackColor = true;
+            // 
+            // btnActualizarListEquipos
+            // 
+            btnActualizarListEquipos.Location = new Point(418, 304);
+            btnActualizarListEquipos.Name = "btnActualizarListEquipos";
+            btnActualizarListEquipos.Size = new Size(109, 23);
+            btnActualizarListEquipos.TabIndex = 7;
+            btnActualizarListEquipos.Text = "Actualizar Listado";
+            btnActualizarListEquipos.UseVisualStyleBackColor = true;
+            btnActualizarListEquipos.Click += btnActualizarListEquipos_Click;
+            // 
+            // btnEditarEquipo
+            // 
+            btnEditarEquipo.Enabled = false;
+            btnEditarEquipo.Location = new Point(170, 304);
+            btnEditarEquipo.Name = "btnEditarEquipo";
+            btnEditarEquipo.Size = new Size(75, 23);
+            btnEditarEquipo.TabIndex = 6;
+            btnEditarEquipo.Text = "Editar";
+            btnEditarEquipo.UseVisualStyleBackColor = true;
+            btnEditarEquipo.Click += btnEditarEquipo_Click;
+            // 
+            // btnEliminarEquipo
+            // 
+            btnEliminarEquipo.Enabled = false;
+            btnEliminarEquipo.Location = new Point(89, 304);
+            btnEliminarEquipo.Name = "btnEliminarEquipo";
+            btnEliminarEquipo.Size = new Size(75, 23);
+            btnEliminarEquipo.TabIndex = 5;
+            btnEliminarEquipo.Text = "Eliminar";
+            btnEliminarEquipo.UseVisualStyleBackColor = true;
+            btnEliminarEquipo.Click += btnEliminarEquipo_Click;
+            // 
+            // btnInsertarEquipo
+            // 
+            btnInsertarEquipo.Location = new Point(8, 304);
+            btnInsertarEquipo.Name = "btnInsertarEquipo";
+            btnInsertarEquipo.Size = new Size(75, 23);
+            btnInsertarEquipo.TabIndex = 4;
+            btnInsertarEquipo.Text = "Insertar";
+            btnInsertarEquipo.UseVisualStyleBackColor = true;
+            btnInsertarEquipo.Click += btnInsertarEquipo_Click;
+            // 
+            // dgvEquipos
+            // 
+            dgvEquipos.AllowUserToAddRows = false;
+            dgvEquipos.AllowUserToDeleteRows = false;
+            dgvEquipos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvEquipos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvEquipos.Location = new Point(8, 44);
+            dgvEquipos.MultiSelect = false;
+            dgvEquipos.Name = "dgvEquipos";
+            dgvEquipos.ReadOnly = true;
+            dgvEquipos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvEquipos.Size = new Size(519, 254);
+            dgvEquipos.TabIndex = 3;
+            dgvEquipos.SelectionChanged += dgvEquipos_SelectionChanged;
+            // 
+            // lblTituloEquipos
+            // 
+            lblTituloEquipos.AutoSize = true;
+            lblTituloEquipos.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloEquipos.Location = new Point(8, 20);
+            lblTituloEquipos.Name = "lblTituloEquipos";
+            lblTituloEquipos.Size = new Size(149, 21);
+            lblTituloEquipos.TabIndex = 2;
+            lblTituloEquipos.Text = "Listado de equipos";
             // 
             // tabJuegos
             // 
@@ -298,6 +380,9 @@ namespace AsignacionFinal.Visual
             tabCiudades.ResumeLayout(false);
             tabCiudades.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCiudades).EndInit();
+            tabEquipos.ResumeLayout(false);
+            tabEquipos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvEquipos).EndInit();
             tabJugadores.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvJugadores).EndInit();
             ((System.ComponentModel.ISupportInitialize)ciudadBindingSource).EndInit();
@@ -320,6 +405,12 @@ namespace AsignacionFinal.Visual
         private Button btnEditar;
         private Button btnEliminar;
         private Button btnActualizarTabla;
+        private DataGridView dgvEquipos;
+        private Label lblTituloEquipos;
+        private Button btnInsertarEquipo;
+        private Button btnActualizarListEquipos;
+        private Button btnEditarEquipo;
+        private Button btnEliminarEquipo;
         private Button btnEliminarJugador;
         private Button btnEditarJugador;
         private Button btnInsertarJugador;
