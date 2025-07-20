@@ -641,6 +641,14 @@ namespace AsignacionFinal.Visual
                      );
                 
             }
+            else if (Convert.ToInt32(spnCantEstad.Value) == 0)
+            {
+                exito = EstadsRepository.Delete(
+                        dgvJuegoPEstad.SelectedRows[0].Cells["ID"].Value.ToString().Trim(),
+                        cmbTipoEstad.SelectedValue.ToString().Trim(),
+                        dgvJugadorPEstad.SelectedRows[0].Cells["IdJugador"].Value.ToString().Trim()
+                     );
+            }
             
 
             if (exito)

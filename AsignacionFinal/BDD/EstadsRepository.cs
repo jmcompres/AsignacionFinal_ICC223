@@ -74,5 +74,25 @@ namespace AsignacionFinal.BDD
                 return false;
             }
         }
+
+        public static bool Delete(string idJuego, string idEstad, string idJugador)
+        {
+            try
+            {
+                using var conn = new SqlConnection(ConfigHelper.ConnectionString);
+                using var cmd = new SqlCommand("DELETE FROM EstadJuego WHERE IdJuego = @ij and IdEstadistica = @ie and IdJugador = @ijug", conn);
+                cmd.Parameters.AddWithValue("@ij", idJuego);
+                cmd.Parameters.AddWithValue("@ie", idEstad);
+                cmd.Parameters.AddWithValue("@ijug", idJugador);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error al eliminar estadística de juego: " + ex.Message);
+                return false;
+            }
+        }
     }
 }
