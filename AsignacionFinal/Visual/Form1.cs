@@ -649,7 +649,16 @@ namespace AsignacionFinal.Visual
                         dgvJugadorPEstad.SelectedRows[0].Cells["IdJugador"].Value.ToString().Trim()
                      );
             }
-            
+            else
+            {
+                exito = EstadsRepository.Update(
+                        dgvJuegoPEstad.SelectedRows[0].Cells["ID"].Value.ToString().Trim(),
+                        cmbTipoEstad.SelectedValue.ToString().Trim(),
+                        dgvJugadorPEstad.SelectedRows[0].Cells["IdJugador"].Value.ToString().Trim(),
+                        Convert.ToInt32(spnCantEstad.Value)
+                     );
+            }
+
 
             if (exito)
             {

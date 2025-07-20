@@ -94,5 +94,29 @@ namespace AsignacionFinal.BDD
                 return false;
             }
         }
+
+        public static bool Update(string idJuego, string idEstad, string idJugador, int neoCant)
+        {
+            try
+            {
+                using var conn = new SqlConnection(ConfigHelper.ConnectionString);
+                using var cmd = new SqlCommand(
+                    "UPDATE EstadJuego SET Cantidad = @c WHERE IdJuego = @ij and IdEstadistica = @ie and IdJugador = @ijug",
+                    conn
+                );
+                cmd.Parameters.AddWithValue("@ij", idJuego);
+                cmd.Parameters.AddWithValue("@ie", idEstad);
+                cmd.Parameters.AddWithValue("@ijug", idJugador);
+                cmd.Parameters.AddWithValue("@c", neoCant);
+                conn.Open();
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
     }
 }
