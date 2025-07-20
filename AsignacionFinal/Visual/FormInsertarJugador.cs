@@ -29,7 +29,6 @@ namespace AsignacionFinal.Visual
             txtNombre.TextChanged += ValidarCampos;
             dgvEquipos.SelectionChanged += ValidarCampos;
             dgvCiudades.SelectionChanged += ValidarCampos;
-            txtId.KeyPress += TxtSoloNumeros_KeyPress;
             txtNumero.KeyPress += TxtSoloNumeros_KeyPress;
             txtNombre.KeyPress += TxtSoloLetras_KeyPress;
             ValidarCampos(null, null);
@@ -83,7 +82,7 @@ namespace AsignacionFinal.Visual
             // Selecciona la ciudad correspondiente
             foreach (DataGridViewRow row in dgvCiudades.Rows)
             {
-                if (row.Cells["IdCiudad"].Value?.ToString() == jugadorEditar.IdCiudadNacimiento)
+                if (row.Cells["ID"].Value?.ToString() == jugadorEditar.IdCiudadNacimiento)
                 {
                     row.Selected = true;
                     dgvCiudades.CurrentCell = row.Cells[0];
@@ -201,7 +200,7 @@ namespace AsignacionFinal.Visual
             }
 
             string idEquipo = dgvEquipos.CurrentRow.Cells["ID"].Value?.ToString();
-            string idCiudad = dgvCiudades.CurrentRow.Cells["IdCiudad"].Value?.ToString();
+            string idCiudad = dgvCiudades.CurrentRow.Cells["ID"].Value?.ToString();
 
             if (string.IsNullOrWhiteSpace(idEquipo) || string.IsNullOrWhiteSpace(idCiudad))
             {

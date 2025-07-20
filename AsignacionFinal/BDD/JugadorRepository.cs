@@ -15,7 +15,7 @@ namespace AsignacionFinal.BDD
             {
                 using var conn = new SqlConnection(ConfigHelper.ConnectionString);
                 using var cmd = new SqlCommand(
-                    "SELECT IdJugador, IdEquipo, IdCiudadNacimiento, FechaNacimiento, NumeroJugador, NombreJugador FROM Jugador", conn);
+                    "SELECT IdJugador, IdEquipo, IdCiudad as IdCiudadNacimiento, FechaNacim as FechaNacimiento, NumJugador as NumeroJugador, Nombre as NombreJugador FROM Jugador", conn);
                 conn.Open();
                 using var rdr = cmd.ExecuteReader();
                 dt.Load(rdr);
@@ -32,7 +32,7 @@ namespace AsignacionFinal.BDD
             try
             {
                 const string sql = @"INSERT INTO Jugador
-                    (IdJugador, IdEquipo, IdCiudadNacimiento, FechaNacimiento, NumeroJugador, NombreJugador)
+                    (IdJugador, IdEquipo, IdCiudad, FechaNacim, NumJugador, Nombre)
                     VALUES (@i, @e, @c, @f, @n, @nj)";
                 using var conn = new SqlConnection(ConfigHelper.ConnectionString);
                 using var cmd = new SqlCommand(sql, conn);
@@ -79,10 +79,10 @@ namespace AsignacionFinal.BDD
                     @"UPDATE Jugador SET 
                         IdJugador = @i, 
                         IdEquipo = @e, 
-                        IdCiudadNacimiento = @c, 
-                        FechaNacimiento = @f, 
-                        NumeroJugador = @n, 
-                        NombreJugador = @nj
+                        IdCiudad = @c, 
+                        FechaNacim = @f, 
+                        NumJugador = @n, 
+                        Nombre = @nj
                       WHERE IdJugador = @id", conn);
                 cmd.Parameters.AddWithValue("@i", j.IdJugador);
                 cmd.Parameters.AddWithValue("@e", j.IdEquipo);

@@ -12,7 +12,7 @@ namespace AsignacionFinal.BDD
             try
             {
                 using var conn = new SqlConnection(ConfigHelper.ConnectionString);
-                using var cmd = new SqlCommand("SELECT eq.IdEquipo as ID, RTRIM(eq.NombreEquipo) as Nombre, RTRIM(c.NombreCiudad)+' ('+c.IdCiudad+')' as Ciudad " +
+                using var cmd = new SqlCommand("SELECT eq.IdEquipo as ID, RTRIM(eq.Nombre) as Nombre, RTRIM(c.Nombre)+' ('+c.IdCiudad+')' as Ciudad " +
                                                "FROM Equipo as eq " +
                                                "JOIN Ciudad as c ON c.IdCiudad = eq.IdCiudad", conn);
                 conn.Open();
@@ -31,7 +31,7 @@ namespace AsignacionFinal.BDD
         {
             try
             {
-                const string sql = "INSERT INTO Equipo(IdEquipo, NombreEquipo, IdCiudad) VALUES(@ie, @n, @ic)";
+                const string sql = "INSERT INTO Equipo(IdEquipo, Nombre, IdCiudad) VALUES(@ie, @n, @ic)";
                 using var conn = new SqlConnection(ConfigHelper.ConnectionString);
                 using var cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@ie", e.idEquipo);
@@ -72,7 +72,7 @@ namespace AsignacionFinal.BDD
             {
                 using var conn = new SqlConnection(ConfigHelper.ConnectionString);
                 using var cmd = new SqlCommand(
-                    "UPDATE Equipo SET IdEquipo = @ie, NombreEquipo = @n, IdCiudad = @ic WHERE IdEquipo = @id",
+                    "UPDATE Equipo SET IdEquipo = @ie, Nombre = @n, IdCiudad = @ic WHERE IdEquipo = @id",
                     conn
                 );
                 cmd.Parameters.AddWithValue("@ie", e.idEquipo);

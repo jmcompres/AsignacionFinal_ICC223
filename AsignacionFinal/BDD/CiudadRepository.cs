@@ -20,7 +20,7 @@ namespace AsignacionFinal.BDD
             {
                 using var conn = new SqlConnection(ConfigHelper.ConnectionString);
                 // Consulta SQL para obtener todas las ciudades
-                using var cmd = new SqlCommand("SELECT IdCiudad, NombreCiudad FROM Ciudad", conn);
+                using var cmd = new SqlCommand("SELECT IdCiudad as ID, Nombre FROM Ciudad", conn);
                 conn.Open();
                 using var rdr = cmd.ExecuteReader();
                 dt.Load(rdr);
@@ -36,7 +36,7 @@ namespace AsignacionFinal.BDD
         {
             try
             {
-                const string sql = "INSERT INTO Ciudad(IdCiudad, NombreCiudad) VALUES(@i, @n)";
+                const string sql = "INSERT INTO Ciudad(IdCiudad, Nombre) VALUES(@i, @n)";
                 using var conn = new SqlConnection(ConfigHelper.ConnectionString);
                 using var cmd = new SqlCommand(sql, conn);
                 cmd.Parameters.AddWithValue("@i", c.idCiudad);
@@ -74,7 +74,7 @@ namespace AsignacionFinal.BDD
             {
                 using var conn = new SqlConnection(ConfigHelper.ConnectionString);
                 using var cmd = new SqlCommand(
-                    "UPDATE Ciudad SET IdCiudad = @i, NombreCiudad = @n WHERE IdCiudad = @id",
+                    "UPDATE Ciudad SET IdCiudad = @i, Nombre = @n WHERE IdCiudad = @id",
                     conn
                 );
                 cmd.Parameters.AddWithValue("@i", c.idCiudad);

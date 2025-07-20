@@ -154,8 +154,8 @@ namespace AsignacionFinal.Visual
         private void button1_Click_2(object sender, EventArgs e)
         {
             var row = dgvCiudades.CurrentRow;
-            string id = Convert.ToString(row.Cells["IdCiudad"].Value).Trim();
-            string nombre = row.Cells["NombreCiudad"].Value.ToString().Trim();
+            string id = Convert.ToString(row.Cells["ID"].Value).Trim();
+            string nombre = row.Cells["Nombre"].Value.ToString().Trim();
 
             // Abrir el formulario de edición y pre‑llenar
             using var frm = new FormInsertCiudad("Editar Ciudad", id, nombre);
@@ -281,7 +281,7 @@ namespace AsignacionFinal.Visual
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             var row = dgvCiudades.CurrentRow;
-            string id = Convert.ToString(row.Cells["IdCiudad"].Value).Trim();
+            string id = Convert.ToString(row.Cells["ID"].Value).Trim();
 
             var confirm = MessageBox.Show(
                 "¿Seguro que deseas eliminar a la ciudad seleccionada?",

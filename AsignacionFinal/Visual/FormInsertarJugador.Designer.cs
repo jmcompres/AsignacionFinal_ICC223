@@ -50,98 +50,115 @@ namespace AsignacionFinal.Visual
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(47, 293);
+            label1.Location = new Point(41, 220);
             label1.Name = "label1";
-            label1.Size = new Size(71, 20);
+            label1.Size = new Size(57, 15);
             label1.TabIndex = 0;
             label1.Text = "Nombre :";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(570, 42);
+            label2.Location = new Point(499, 32);
             label2.Name = "label2";
-            label2.Size = new Size(63, 20);
+            label2.Size = new Size(50, 15);
             label2.TabIndex = 1;
             label2.Text = "Equipo :";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(111, 42);
+            label3.Location = new Point(97, 32);
             label3.Name = "label3";
-            label3.Size = new Size(165, 20);
+            label3.Size = new Size(132, 15);
             label3.TabIndex = 2;
             label3.Text = "Ciudad de Nacimiento :";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(458, 333);
+            label4.Location = new Point(401, 250);
             label4.Name = "label4";
-            label4.Size = new Size(70, 20);
+            label4.Size = new Size(57, 15);
             label4.TabIndex = 3;
             label4.Text = "Numero: ";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(47, 333);
+            label5.Location = new Point(41, 250);
             label5.Name = "label5";
-            label5.Size = new Size(122, 20);
+            label5.Size = new Size(98, 15);
             label5.TabIndex = 4;
             label5.Text = "Fecha de Nacim :";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(458, 293);
+            label6.Location = new Point(401, 220);
             label6.Name = "label6";
-            label6.Size = new Size(29, 20);
+            label6.Size = new Size(23, 15);
             label6.TabIndex = 5;
             label6.Text = "Id :";
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(173, 290);
+            txtNombre.Location = new Point(151, 218);
+            txtNombre.Margin = new Padding(3, 2, 3, 2);
             txtNombre.MaxLength = 30;
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(250, 27);
+            txtNombre.Size = new Size(219, 23);
             txtNombre.TabIndex = 6;
             // 
             // dgvEquipos
             // 
+            dgvEquipos.AllowUserToAddRows = false;
+            dgvEquipos.AllowUserToDeleteRows = false;
+            dgvEquipos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvEquipos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEquipos.Location = new Point(440, 83);
+            dgvEquipos.Location = new Point(385, 62);
+            dgvEquipos.Margin = new Padding(3, 2, 3, 2);
+            dgvEquipos.MultiSelect = false;
             dgvEquipos.Name = "dgvEquipos";
+            dgvEquipos.ReadOnly = true;
             dgvEquipos.RowHeadersWidth = 51;
-            dgvEquipos.Size = new Size(325, 188);
+            dgvEquipos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvEquipos.Size = new Size(284, 141);
             dgvEquipos.TabIndex = 7;
             dgvEquipos.CellContentClick += dgvEquipos_CellContentClick;
             // 
             // dgvCiudades
             // 
+            dgvCiudades.AllowUserToAddRows = false;
+            dgvCiudades.AllowUserToDeleteRows = false;
+            dgvCiudades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCiudades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCiudades.Location = new Point(47, 83);
+            dgvCiudades.Location = new Point(41, 62);
+            dgvCiudades.Margin = new Padding(3, 2, 3, 2);
+            dgvCiudades.MultiSelect = false;
             dgvCiudades.Name = "dgvCiudades";
+            dgvCiudades.ReadOnly = true;
             dgvCiudades.RowHeadersWidth = 51;
-            dgvCiudades.Size = new Size(325, 188);
+            dgvCiudades.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCiudades.Size = new Size(284, 141);
             dgvCiudades.TabIndex = 8;
             // 
             // txtNumero
             // 
-            txtNumero.Location = new Point(527, 333);
+            txtNumero.Location = new Point(461, 250);
+            txtNumero.Margin = new Padding(3, 2, 3, 2);
             txtNumero.MaxLength = 4;
             txtNumero.Name = "txtNumero";
-            txtNumero.Size = new Size(125, 27);
+            txtNumero.Size = new Size(110, 23);
             txtNumero.TabIndex = 9;
             // 
             // btnInsertar
             // 
             btnInsertar.Enabled = false;
-            btnInsertar.Location = new Point(570, 406);
+            btnInsertar.Location = new Point(499, 304);
+            btnInsertar.Margin = new Padding(3, 2, 3, 2);
             btnInsertar.Name = "btnInsertar";
-            btnInsertar.Size = new Size(94, 29);
+            btnInsertar.Size = new Size(82, 22);
             btnInsertar.TabIndex = 10;
             btnInsertar.Text = "Insertar";
             btnInsertar.UseVisualStyleBackColor = true;
@@ -149,9 +166,10 @@ namespace AsignacionFinal.Visual
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(694, 406);
+            btnCancelar.Location = new Point(607, 304);
+            btnCancelar.Margin = new Padding(3, 2, 3, 2);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(94, 29);
+            btnCancelar.Size = new Size(82, 22);
             btnCancelar.TabIndex = 11;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
@@ -159,24 +177,26 @@ namespace AsignacionFinal.Visual
             // 
             // dtpFechaNacim
             // 
-            dtpFechaNacim.Location = new Point(173, 330);
+            dtpFechaNacim.Location = new Point(151, 248);
+            dtpFechaNacim.Margin = new Padding(3, 2, 3, 2);
             dtpFechaNacim.Name = "dtpFechaNacim";
-            dtpFechaNacim.Size = new Size(113, 27);
+            dtpFechaNacim.Size = new Size(99, 23);
             dtpFechaNacim.TabIndex = 12;
             // 
             // txtId
             // 
-            txtId.Location = new Point(527, 290);
+            txtId.Location = new Point(461, 218);
+            txtId.Margin = new Padding(3, 2, 3, 2);
             txtId.MaxLength = 5;
             txtId.Name = "txtId";
-            txtId.Size = new Size(125, 27);
+            txtId.Size = new Size(110, 23);
             txtId.TabIndex = 13;
             // 
             // FormInsertarJugador
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(824, 478);
+            ClientSize = new Size(721, 358);
             ControlBox = false;
             Controls.Add(txtId);
             Controls.Add(dtpFechaNacim);
@@ -193,6 +213,7 @@ namespace AsignacionFinal.Visual
             Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "FormInsertarJugador";
             Text = "Insertar Jugador";
             ((System.ComponentModel.ISupportInitialize)dgvEquipos).EndInit();
