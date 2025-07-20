@@ -2,6 +2,7 @@
 using System.Data;
 using System.Globalization;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AsignacionFinal.Visual
 {
@@ -11,6 +12,7 @@ namespace AsignacionFinal.Visual
         {
             InitializeComponent();
             InitializeAllData();
+            initResumen();
         }
 
         private void InitializeAllData()
@@ -33,6 +35,7 @@ namespace AsignacionFinal.Visual
         private void loadDataJuego()
         {
             dgvJuegos.DataSource = JuegoRepository.GetAll();
+            updateCmbResumen();
         }
 
         private void loadDataJugador()
@@ -222,7 +225,7 @@ namespace AsignacionFinal.Visual
             );
 
             // Abrir el formulario de edición y pre‑llenar
-            using var frm = new FormInsertJuego(fechaYHora,"Editar Juego", id, descripcion, idEqA,idEqB);
+            using var frm = new FormInsertJuego(fechaYHora, "Editar Juego", id, descripcion, idEqA, idEqB);
 
             if (frm.ShowDialog() == DialogResult.OK && frm.juego != null)
             {
@@ -501,5 +504,66 @@ namespace AsignacionFinal.Visual
             return dt.ToString("dd/MM/yyyy HH:mm");
         }
 
+        private void btnConsultarResumen_Click(object sender, EventArgs e)
+        {
+            dgvResumen.DataSource = JuegoRepository.GetResumenJuego(cmbIdJuegoResumen.SelectedValue.ToString().Trim());
+            if (dgvResumen.Rows.Count == 0)
+            {
+                MessageBox.Show("No se encontraron resultados para el ID de juego proporcionado.", "Información",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgvResumen.Visible = false;
+            }
+            else
+            {
+                dgvResumen.ClearSelection();
+                dgvResumen.Visible = true;
+            }
+        }
+
+        private void initResumen()
+        {
+            dgvResumen.ReadOnly = true; // Evita edición
+            dgvResumen.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvResumen.ClearSelection();
+            dgvResumen.CurrentCell = null;
+            dgvResumen.MultiSelect = false;
+
+            dgvResumen.DataSource = AsignacionFinal.BDD.JuegoRepository.GetResumenJuego("");
+
+            // Evita selección al hacer clic o usar teclas
+            dgvResumen.SelectionChanged += (s, e) => dgvResumen.ClearSelection();
+            dgvResumen.KeyDown += (s, e) => e.Handled = true;
+
+            var colFija = dgvResumen.Columns[" "]; //" " es el nombre de la primera columna
+            colFija.Width = 300;
+            colFija.Resizable = DataGridViewTriState.False;
+            colFija.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+            // Las demás se ajustan
+            foreach (DataGridViewColumn col in dgvResumen.Columns)
+            {
+                if (col.Name != "ID")
+                {
+                    col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+
+            updateCmbResumen();
+        }
+
+        private void cmbIdJuegoResumen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbIdJuegoResumen.SelectedIndex < 0) btnConsultarResumen.Enabled = false;
+            else btnConsultarResumen.Enabled = true;
+        }
+
+        private void updateCmbResumen()
+        {
+            cmbIdJuegoResumen.DataSource = JuegoRepository.GetAll();
+            cmbIdJuegoResumen.DisplayMember = "ID";     // Lo que se ve en la lista
+            cmbIdJuegoResumen.ValueMember = "ID";
+            cmbIdJuegoResumen.SelectedIndex = -1;
+            dgvResumen.Visible = false;
+        }
     }
 }
