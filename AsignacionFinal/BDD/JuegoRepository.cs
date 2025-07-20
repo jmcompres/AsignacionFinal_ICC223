@@ -181,5 +181,31 @@ namespace AsignacionFinal.BDD
 
             return dt;
         }
+
+        public static DataTable GetJugadoresJuego(string idJuego)
+        {
+            var dt = new DataTable();
+            try
+            {
+                using var conn = new SqlConnection(ConfigHelper.ConnectionString);
+                using var cmd = new SqlCommand("SELECT jug.IdEquipo, jug.IdJugador, jug.NumJugador, jug.Nombre " +
+                                               "FROM Juego as j " +
+                                               "JOIN Equipo as eqa ON j.IdEquipoA = eqa.IdEquipo " +
+                                               "JOIN Equipo as eqb ON j.IdEquipoB = eqb.IdEquipo " +
+                                               "JOIN Jugador as jug ON jug.IdEquipo = eqa.IdEquipo or jug.IdEquipo = eqb.IdEquipo " +
+                                               "WHERE j.IdJuego = @ij " +
+                                               "ORDER BY jug.IdEquipo ASC", conn);
+                cmd.Parameters.AddWithValue("@ij", idJuego);
+                conn.Open();
+                using var rdr = cmd.ExecuteReader();
+                dt.Load(rdr);
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine("Error al cargar jugadores: " + exc.Message);
+            }
+
+            return dt;
+        }
     }
 }
