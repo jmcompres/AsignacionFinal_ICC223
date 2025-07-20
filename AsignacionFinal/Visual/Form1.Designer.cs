@@ -57,6 +57,12 @@ namespace AsignacionFinal.Visual
             dgvEquipos = new DataGridView();
             lblTituloEquipos = new Label();
             tabJuegos = new TabPage();
+            btnActualizarListadoJuegos = new Button();
+            btnEditarJuego = new Button();
+            btnEliminarJuego = new Button();
+            btnInsertarJuego = new Button();
+            dgvJuegos = new DataGridView();
+            lblTituloJuegos = new Label();
             tabEstads = new TabPage();
             ciudadBindingSource = new BindingSource(components);
             tabControl1.SuspendLayout();
@@ -66,6 +72,8 @@ namespace AsignacionFinal.Visual
             ((System.ComponentModel.ISupportInitialize)dgvJugadores).BeginInit();
             tabEquipos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvEquipos).BeginInit();
+            tabJuegos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvJuegos).BeginInit();
             ((System.ComponentModel.ISupportInitialize)ciudadBindingSource).BeginInit();
             SuspendLayout();
             // 
@@ -350,14 +358,88 @@ namespace AsignacionFinal.Visual
             // 
             // tabJuegos
             // 
+
             tabJuegos.Location = new Point(4, 29);
             tabJuegos.Margin = new Padding(3, 4, 3, 4);
+
+            tabJuegos.Controls.Add(btnActualizarListadoJuegos);
+            tabJuegos.Controls.Add(btnEditarJuego);
+            tabJuegos.Controls.Add(btnEliminarJuego);
+            tabJuegos.Controls.Add(btnInsertarJuego);
+            tabJuegos.Controls.Add(dgvJuegos);
+            tabJuegos.Controls.Add(lblTituloJuegos);
+            tabJuegos.Location = new Point(4, 24);
+
             tabJuegos.Name = "tabJuegos";
             tabJuegos.Padding = new Padding(3, 4, 3, 4);
             tabJuegos.Size = new Size(906, 567);
             tabJuegos.TabIndex = 4;
             tabJuegos.Text = "Juegos";
             tabJuegos.UseVisualStyleBackColor = true;
+            // 
+            // btnActualizarListadoJuegos
+            // 
+            btnActualizarListadoJuegos.Location = new Point(672, 304);
+            btnActualizarListadoJuegos.Name = "btnActualizarListadoJuegos";
+            btnActualizarListadoJuegos.Size = new Size(112, 23);
+            btnActualizarListadoJuegos.TabIndex = 5;
+            btnActualizarListadoJuegos.Text = "Actualizar Listado";
+            btnActualizarListadoJuegos.UseVisualStyleBackColor = true;
+            // 
+            // btnEditarJuego
+            // 
+            btnEditarJuego.Location = new Point(170, 304);
+            btnEditarJuego.Name = "btnEditarJuego";
+            btnEditarJuego.Size = new Size(75, 23);
+            btnEditarJuego.TabIndex = 4;
+            btnEditarJuego.Text = "Editar";
+            btnEditarJuego.UseVisualStyleBackColor = true;
+            btnEditarJuego.Click += btnEditarJuego_Click;
+            // 
+            // btnEliminarJuego
+            // 
+            btnEliminarJuego.Location = new Point(89, 304);
+            btnEliminarJuego.Name = "btnEliminarJuego";
+            btnEliminarJuego.Size = new Size(75, 23);
+            btnEliminarJuego.TabIndex = 3;
+            btnEliminarJuego.Text = "Eliminar";
+            btnEliminarJuego.UseVisualStyleBackColor = true;
+            btnEliminarJuego.Click += btnEliminarJuego_Click;
+            // 
+            // btnInsertarJuego
+            // 
+            btnInsertarJuego.Location = new Point(8, 304);
+            btnInsertarJuego.Name = "btnInsertarJuego";
+            btnInsertarJuego.Size = new Size(75, 23);
+            btnInsertarJuego.TabIndex = 2;
+            btnInsertarJuego.Text = "Insertar";
+            btnInsertarJuego.UseVisualStyleBackColor = true;
+            btnInsertarJuego.Click += btnInsertarJuego_Click;
+            // 
+            // dgvJuegos
+            // 
+            dgvJuegos.AllowUserToAddRows = false;
+            dgvJuegos.AllowUserToDeleteRows = false;
+            dgvJuegos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvJuegos.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvJuegos.Location = new Point(8, 44);
+            dgvJuegos.MultiSelect = false;
+            dgvJuegos.Name = "dgvJuegos";
+            dgvJuegos.ReadOnly = true;
+            dgvJuegos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvJuegos.Size = new Size(776, 254);
+            dgvJuegos.TabIndex = 1;
+            dgvJuegos.SelectionChanged += dgvJuegos_SelectionChanged;
+            // 
+            // lblTituloJuegos
+            // 
+            lblTituloJuegos.AutoSize = true;
+            lblTituloJuegos.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTituloJuegos.Location = new Point(8, 20);
+            lblTituloJuegos.Name = "lblTituloJuegos";
+            lblTituloJuegos.Size = new Size(139, 21);
+            lblTituloJuegos.TabIndex = 0;
+            lblTituloJuegos.Text = "Listado de juegos";
             // 
             // tabEstads
             // 
@@ -395,6 +477,9 @@ namespace AsignacionFinal.Visual
             tabEquipos.ResumeLayout(false);
             tabEquipos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvEquipos).EndInit();
+            tabJuegos.ResumeLayout(false);
+            tabJuegos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvJuegos).EndInit();
             ((System.ComponentModel.ISupportInitialize)ciudadBindingSource).EndInit();
             ResumeLayout(false);
         }
@@ -421,11 +506,19 @@ namespace AsignacionFinal.Visual
         private Button btnActualizarListEquipos;
         private Button btnEditarEquipo;
         private Button btnEliminarEquipo;
+
         private Button btnEliminarJugador;
         private Button btnEditarJugador;
         private Button btnInsertarJugador;
         private Button btnActualizarListaJugadores;
         private DataGridView dgvJugadores;
         private Label label1;
+
+        private Label lblTituloJuegos;
+        private Button btnActualizarListadoJuegos;
+        private Button btnEditarJuego;
+        private Button btnEliminarJuego;
+        private Button btnInsertarJuego;
+        private DataGridView dgvJuegos;
     }
 }
