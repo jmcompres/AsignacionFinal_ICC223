@@ -102,9 +102,11 @@ namespace AsignacionFinal.Visual
             btnActualizarTabla.TabIndex = 5;
             btnActualizarTabla.Text = "Actualizar Listado";
             btnActualizarTabla.UseVisualStyleBackColor = true;
+            btnActualizarTabla.Click += btnActualizarTabla_Click;
             // 
             // btnEditar
             // 
+            btnEditar.Enabled = false;
             btnEditar.Location = new Point(170, 304);
             btnEditar.Name = "btnEditar";
             btnEditar.Size = new Size(75, 23);
@@ -115,12 +117,14 @@ namespace AsignacionFinal.Visual
             // 
             // btnEliminar
             // 
+            btnEliminar.Enabled = false;
             btnEliminar.Location = new Point(89, 304);
             btnEliminar.Name = "btnEliminar";
             btnEliminar.Size = new Size(75, 23);
             btnEliminar.TabIndex = 3;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
             // 
             // btnInsertar
             // 
@@ -149,12 +153,14 @@ namespace AsignacionFinal.Visual
             dgvCiudades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCiudades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvCiudades.Location = new Point(8, 44);
+            dgvCiudades.MultiSelect = false;
             dgvCiudades.Name = "dgvCiudades";
             dgvCiudades.ReadOnly = true;
             dgvCiudades.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvCiudades.Size = new Size(445, 254);
             dgvCiudades.TabIndex = 0;
             dgvCiudades.CellContentClick += dataGridView1_CellContentClick;
+            dgvCiudades.SelectionChanged += dgvCiudades_SelectionChanged;
             // 
             // tabJugadores
             // 
@@ -215,11 +221,6 @@ namespace AsignacionFinal.Visual
             ((System.ComponentModel.ISupportInitialize)dgvCiudades).EndInit();
             ((System.ComponentModel.ISupportInitialize)ciudadBindingSource).EndInit();
             ResumeLayout(false);
-        }
-
-        private void InitializeData()
-        {
-            dgvCiudades.DataSource = CiudadRepository.GetAll();
         }
 
         #endregion
