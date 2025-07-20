@@ -43,6 +43,12 @@ namespace AsignacionFinal.Visual
             lblCiudades = new Label();
             dgvCiudades = new DataGridView();
             tabJugadores = new TabPage();
+            label1 = new Label();
+            dgvJugadores = new DataGridView();
+            btnActualizarListaJugadores = new Button();
+            btnEliminarJugador = new Button();
+            btnEditarJugador = new Button();
+            btnInsertarJugador = new Button();
             tabEquipos = new TabPage();
             btnActualizarListEquipos = new Button();
             btnEditarEquipo = new Button();
@@ -62,6 +68,8 @@ namespace AsignacionFinal.Visual
             tabControl1.SuspendLayout();
             tabCiudades.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCiudades).BeginInit();
+            tabJugadores.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvJugadores).BeginInit();
             tabEquipos.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvEquipos).BeginInit();
             tabJuegos.SuspendLayout();
@@ -79,17 +87,19 @@ namespace AsignacionFinal.Visual
             tabControl1.Controls.Add(tabEstads);
             tabControl1.Dock = DockStyle.Fill;
             tabControl1.Location = new Point(0, 0);
+            tabControl1.Margin = new Padding(3, 4, 3, 4);
             tabControl1.Name = "tabControl1";
             tabControl1.SelectedIndex = 0;
-            tabControl1.Size = new Size(800, 450);
+            tabControl1.Size = new Size(914, 600);
             tabControl1.TabIndex = 0;
             // 
             // tabMenuPrincipal
             // 
-            tabMenuPrincipal.Location = new Point(4, 24);
+            tabMenuPrincipal.Location = new Point(4, 29);
+            tabMenuPrincipal.Margin = new Padding(3, 4, 3, 4);
             tabMenuPrincipal.Name = "tabMenuPrincipal";
-            tabMenuPrincipal.Padding = new Padding(3);
-            tabMenuPrincipal.Size = new Size(792, 422);
+            tabMenuPrincipal.Padding = new Padding(3, 4, 3, 4);
+            tabMenuPrincipal.Size = new Size(906, 567);
             tabMenuPrincipal.TabIndex = 0;
             tabMenuPrincipal.Text = "Menú Principal";
             tabMenuPrincipal.UseVisualStyleBackColor = true;
@@ -102,19 +112,21 @@ namespace AsignacionFinal.Visual
             tabCiudades.Controls.Add(btnInsertar);
             tabCiudades.Controls.Add(lblCiudades);
             tabCiudades.Controls.Add(dgvCiudades);
-            tabCiudades.Location = new Point(4, 24);
+            tabCiudades.Location = new Point(4, 29);
+            tabCiudades.Margin = new Padding(3, 4, 3, 4);
             tabCiudades.Name = "tabCiudades";
-            tabCiudades.Padding = new Padding(3);
-            tabCiudades.Size = new Size(792, 422);
+            tabCiudades.Padding = new Padding(3, 4, 3, 4);
+            tabCiudades.Size = new Size(906, 567);
             tabCiudades.TabIndex = 1;
             tabCiudades.Text = "Ciudades";
             tabCiudades.UseVisualStyleBackColor = true;
             // 
             // btnActualizarTabla
             // 
-            btnActualizarTabla.Location = new Point(339, 304);
+            btnActualizarTabla.Location = new Point(387, 405);
+            btnActualizarTabla.Margin = new Padding(3, 4, 3, 4);
             btnActualizarTabla.Name = "btnActualizarTabla";
-            btnActualizarTabla.Size = new Size(114, 23);
+            btnActualizarTabla.Size = new Size(130, 31);
             btnActualizarTabla.TabIndex = 5;
             btnActualizarTabla.Text = "Actualizar Listado";
             btnActualizarTabla.UseVisualStyleBackColor = true;
@@ -123,9 +135,10 @@ namespace AsignacionFinal.Visual
             // btnEditar
             // 
             btnEditar.Enabled = false;
-            btnEditar.Location = new Point(170, 304);
+            btnEditar.Location = new Point(194, 405);
+            btnEditar.Margin = new Padding(3, 4, 3, 4);
             btnEditar.Name = "btnEditar";
-            btnEditar.Size = new Size(75, 23);
+            btnEditar.Size = new Size(86, 31);
             btnEditar.TabIndex = 4;
             btnEditar.Text = "Editar";
             btnEditar.UseVisualStyleBackColor = true;
@@ -134,9 +147,10 @@ namespace AsignacionFinal.Visual
             // btnEliminar
             // 
             btnEliminar.Enabled = false;
-            btnEliminar.Location = new Point(89, 304);
+            btnEliminar.Location = new Point(102, 405);
+            btnEliminar.Margin = new Padding(3, 4, 3, 4);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(75, 23);
+            btnEliminar.Size = new Size(86, 31);
             btnEliminar.TabIndex = 3;
             btnEliminar.Text = "Eliminar";
             btnEliminar.UseVisualStyleBackColor = true;
@@ -144,9 +158,10 @@ namespace AsignacionFinal.Visual
             // 
             // btnInsertar
             // 
-            btnInsertar.Location = new Point(8, 304);
+            btnInsertar.Location = new Point(9, 405);
+            btnInsertar.Margin = new Padding(3, 4, 3, 4);
             btnInsertar.Name = "btnInsertar";
-            btnInsertar.Size = new Size(75, 23);
+            btnInsertar.Size = new Size(86, 31);
             btnInsertar.TabIndex = 2;
             btnInsertar.Text = "Insertar";
             btnInsertar.UseVisualStyleBackColor = true;
@@ -156,9 +171,9 @@ namespace AsignacionFinal.Visual
             // 
             lblCiudades.AutoSize = true;
             lblCiudades.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblCiudades.Location = new Point(8, 20);
+            lblCiudades.Location = new Point(9, 27);
             lblCiudades.Name = "lblCiudades";
-            lblCiudades.Size = new Size(155, 21);
+            lblCiudades.Size = new Size(192, 28);
             lblCiudades.TabIndex = 1;
             lblCiudades.Text = "Listado de ciudades";
             // 
@@ -168,25 +183,93 @@ namespace AsignacionFinal.Visual
             dgvCiudades.AllowUserToDeleteRows = false;
             dgvCiudades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCiudades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCiudades.Location = new Point(8, 44);
+            dgvCiudades.Location = new Point(9, 59);
+            dgvCiudades.Margin = new Padding(3, 4, 3, 4);
             dgvCiudades.MultiSelect = false;
             dgvCiudades.Name = "dgvCiudades";
             dgvCiudades.ReadOnly = true;
+            dgvCiudades.RowHeadersWidth = 51;
             dgvCiudades.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCiudades.Size = new Size(445, 254);
+            dgvCiudades.Size = new Size(509, 339);
             dgvCiudades.TabIndex = 0;
             dgvCiudades.CellContentClick += dataGridView1_CellContentClick;
             dgvCiudades.SelectionChanged += dgvCiudades_SelectionChanged;
             // 
             // tabJugadores
             // 
-            tabJugadores.Location = new Point(4, 24);
+            tabJugadores.Controls.Add(label1);
+            tabJugadores.Controls.Add(dgvJugadores);
+            tabJugadores.Controls.Add(btnActualizarListaJugadores);
+            tabJugadores.Controls.Add(btnEliminarJugador);
+            tabJugadores.Controls.Add(btnEditarJugador);
+            tabJugadores.Controls.Add(btnInsertarJugador);
+            tabJugadores.Location = new Point(4, 29);
+            tabJugadores.Margin = new Padding(3, 4, 3, 4);
             tabJugadores.Name = "tabJugadores";
-            tabJugadores.Padding = new Padding(3);
-            tabJugadores.Size = new Size(792, 422);
+            tabJugadores.Padding = new Padding(3, 4, 3, 4);
+            tabJugadores.Size = new Size(906, 567);
             tabJugadores.TabIndex = 2;
             tabJugadores.Text = "Jugadores";
             tabJugadores.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label1.Location = new Point(21, 27);
+            label1.Name = "label1";
+            label1.Size = new Size(205, 28);
+            label1.TabIndex = 5;
+            label1.Text = "Listado de Jugadores";
+            // 
+            // dgvJugadores
+            // 
+            dgvJugadores.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvJugadores.Location = new Point(21, 59);
+            dgvJugadores.Name = "dgvJugadores";
+            dgvJugadores.RowHeadersWidth = 51;
+            dgvJugadores.Size = new Size(462, 282);
+            dgvJugadores.TabIndex = 4;
+            // 
+            // btnActualizarListaJugadores
+            // 
+            btnActualizarListaJugadores.Location = new Point(391, 358);
+            btnActualizarListaJugadores.Name = "btnActualizarListaJugadores";
+            btnActualizarListaJugadores.Size = new Size(94, 29);
+            btnActualizarListaJugadores.TabIndex = 3;
+            btnActualizarListaJugadores.Text = "Actualizar";
+            btnActualizarListaJugadores.UseVisualStyleBackColor = true;
+            btnActualizarListaJugadores.Click += btnActualizarListaJugadores_Click;
+            // 
+            // btnEliminarJugador
+            // 
+            btnEliminarJugador.Location = new Point(121, 358);
+            btnEliminarJugador.Name = "btnEliminarJugador";
+            btnEliminarJugador.Size = new Size(94, 29);
+            btnEliminarJugador.TabIndex = 2;
+            btnEliminarJugador.Text = "Eliminar";
+            btnEliminarJugador.UseVisualStyleBackColor = true;
+            btnEliminarJugador.Click += btnEliminarJugador_Click;
+            // 
+            // btnEditarJugador
+            // 
+            btnEditarJugador.Location = new Point(221, 358);
+            btnEditarJugador.Name = "btnEditarJugador";
+            btnEditarJugador.Size = new Size(94, 29);
+            btnEditarJugador.TabIndex = 1;
+            btnEditarJugador.Text = "Editar";
+            btnEditarJugador.UseVisualStyleBackColor = true;
+            btnEditarJugador.Click += btnEditarJugador_Click;
+            // 
+            // btnInsertarJugador
+            // 
+            btnInsertarJugador.Location = new Point(21, 358);
+            btnInsertarJugador.Name = "btnInsertarJugador";
+            btnInsertarJugador.Size = new Size(94, 29);
+            btnInsertarJugador.TabIndex = 0;
+            btnInsertarJugador.Text = "Insertar";
+            btnInsertarJugador.UseVisualStyleBackColor = true;
+            btnInsertarJugador.Click += btnInsertarJugador_Click;
             // 
             // tabEquipos
             // 
@@ -196,10 +279,11 @@ namespace AsignacionFinal.Visual
             tabEquipos.Controls.Add(btnInsertarEquipo);
             tabEquipos.Controls.Add(dgvEquipos);
             tabEquipos.Controls.Add(lblTituloEquipos);
-            tabEquipos.Location = new Point(4, 24);
+            tabEquipos.Location = new Point(4, 29);
+            tabEquipos.Margin = new Padding(3, 4, 3, 4);
             tabEquipos.Name = "tabEquipos";
-            tabEquipos.Padding = new Padding(3);
-            tabEquipos.Size = new Size(792, 422);
+            tabEquipos.Padding = new Padding(3, 4, 3, 4);
+            tabEquipos.Size = new Size(906, 567);
             tabEquipos.TabIndex = 3;
             tabEquipos.Text = "Equipos";
             tabEquipos.UseVisualStyleBackColor = true;
@@ -256,6 +340,7 @@ namespace AsignacionFinal.Visual
             dgvEquipos.MultiSelect = false;
             dgvEquipos.Name = "dgvEquipos";
             dgvEquipos.ReadOnly = true;
+            dgvEquipos.RowHeadersWidth = 51;
             dgvEquipos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvEquipos.Size = new Size(519, 254);
             dgvEquipos.TabIndex = 3;
@@ -267,12 +352,16 @@ namespace AsignacionFinal.Visual
             lblTituloEquipos.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTituloEquipos.Location = new Point(8, 20);
             lblTituloEquipos.Name = "lblTituloEquipos";
-            lblTituloEquipos.Size = new Size(149, 21);
+            lblTituloEquipos.Size = new Size(185, 28);
             lblTituloEquipos.TabIndex = 2;
             lblTituloEquipos.Text = "Listado de equipos";
             // 
             // tabJuegos
             // 
+
+            tabJuegos.Location = new Point(4, 29);
+            tabJuegos.Margin = new Padding(3, 4, 3, 4);
+
             tabJuegos.Controls.Add(btnActualizarListadoJuegos);
             tabJuegos.Controls.Add(btnEditarJuego);
             tabJuegos.Controls.Add(btnEliminarJuego);
@@ -280,9 +369,10 @@ namespace AsignacionFinal.Visual
             tabJuegos.Controls.Add(dgvJuegos);
             tabJuegos.Controls.Add(lblTituloJuegos);
             tabJuegos.Location = new Point(4, 24);
+
             tabJuegos.Name = "tabJuegos";
-            tabJuegos.Padding = new Padding(3);
-            tabJuegos.Size = new Size(792, 422);
+            tabJuegos.Padding = new Padding(3, 4, 3, 4);
+            tabJuegos.Size = new Size(906, 567);
             tabJuegos.TabIndex = 4;
             tabJuegos.Text = "Juegos";
             tabJuegos.UseVisualStyleBackColor = true;
@@ -353,10 +443,11 @@ namespace AsignacionFinal.Visual
             // 
             // tabEstads
             // 
-            tabEstads.Location = new Point(4, 24);
+            tabEstads.Location = new Point(4, 29);
+            tabEstads.Margin = new Padding(3, 4, 3, 4);
             tabEstads.Name = "tabEstads";
-            tabEstads.Padding = new Padding(3);
-            tabEstads.Size = new Size(792, 422);
+            tabEstads.Padding = new Padding(3, 4, 3, 4);
+            tabEstads.Size = new Size(906, 567);
             tabEstads.TabIndex = 5;
             tabEstads.Text = "Estadísticas";
             tabEstads.UseVisualStyleBackColor = true;
@@ -367,17 +458,22 @@ namespace AsignacionFinal.Visual
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(914, 600);
             Controls.Add(tabControl1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             Name = "Form1";
             Text = "Gestor de torneo";
             tabControl1.ResumeLayout(false);
             tabCiudades.ResumeLayout(false);
             tabCiudades.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvCiudades).EndInit();
+            tabJugadores.ResumeLayout(false);
+            tabJugadores.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvJugadores).EndInit();
             tabEquipos.ResumeLayout(false);
             tabEquipos.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvEquipos).EndInit();
@@ -410,6 +506,14 @@ namespace AsignacionFinal.Visual
         private Button btnActualizarListEquipos;
         private Button btnEditarEquipo;
         private Button btnEliminarEquipo;
+
+        private Button btnEliminarJugador;
+        private Button btnEditarJugador;
+        private Button btnInsertarJugador;
+        private Button btnActualizarListaJugadores;
+        private DataGridView dgvJugadores;
+        private Label label1;
+
         private Label lblTituloJuegos;
         private Button btnActualizarListadoJuegos;
         private Button btnEditarJuego;
