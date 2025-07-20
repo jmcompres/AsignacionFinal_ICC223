@@ -21,6 +21,10 @@ namespace AsignacionFinal.Visual
             InitializeComponent();
             dgvEqA.DataSource = AsignacionFinal.BDD.EquipoRepository.GetAll();
             dgvEqB.DataSource = AsignacionFinal.BDD.EquipoRepository.GetAll();
+            // Hacer que no se puedan cambiar los equipos si ya hay estadísticas registradas para ese equipo en el juego
+            if (AsignacionFinal.BDD.JuegoRepository.existEquipoEstad(id,idEqA)) deshabilitarDGV(dgvEqA);
+            if (AsignacionFinal.BDD.JuegoRepository.existEquipoEstad(id,idEqB)) deshabilitarDGV(dgvEqB);
+
             pickFechaYHora.Format = DateTimePickerFormat.Custom;
             pickFechaYHora.CustomFormat = "dd/MM/yyyy HH:mm";
             pickFechaYHora.ShowUpDown = true;
@@ -121,6 +125,15 @@ namespace AsignacionFinal.Visual
             };
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void deshabilitarDGV(DataGridView dgv)
+        {
+            dgv.Enabled = false;
+            dgv.DefaultCellStyle.BackColor = SystemColors.Control; // gris claro típico
+            dgv.DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = SystemColors.ControlDark;
+            dgv.BackgroundColor = SystemColors.Control;
         }
     }
 }

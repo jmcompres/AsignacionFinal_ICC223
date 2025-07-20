@@ -138,5 +138,28 @@ namespace AsignacionFinal.BDD
 
             return idEqB;
         }
+
+        public static bool existEquipoEstad(string idJuego, string idEquipo)
+        {
+            try
+            {
+                using var conn = new SqlConnection(ConfigHelper.ConnectionString);
+                using var cmd = new SqlCommand("SELECT '' " +
+                                               "FROM EstadJuego as ej " +
+                                               "JOIN Jugador as j ON ej.IdJugador = j.IdJugador " +
+                                               "WHERE ej.IdJuego = @ij " +
+                                               "AND j.IdEquipo = @ie", conn);
+                cmd.Parameters.AddWithValue("@ij", idJuego);
+                cmd.Parameters.AddWithValue("@ie", idEquipo);
+                conn.Open();
+                using var rdr = cmd.ExecuteReader();
+                return rdr.HasRows;
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine("Error: " + exc.Message);
+                return false;
+            }
+        }
     }
 }
