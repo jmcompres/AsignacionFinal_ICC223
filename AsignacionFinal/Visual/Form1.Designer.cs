@@ -1,4 +1,7 @@
-﻿namespace AsignacionFinal
+﻿using AsignacionFinal.BDD;
+using System.Windows.Forms;
+
+namespace AsignacionFinal.Visual
 {
     partial class Form1
     {
@@ -28,15 +31,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             tabControl1 = new TabControl();
             tabMenuPrincipal = new TabPage();
             tabCiudades = new TabPage();
+            btnActualizarTabla = new Button();
+            btnEditar = new Button();
+            btnEliminar = new Button();
+            btnInsertar = new Button();
+            lblCiudades = new Label();
+            dgvCiudades = new DataGridView();
             tabJugadores = new TabPage();
             tabEquipos = new TabPage();
             tabJuegos = new TabPage();
             tabEstads = new TabPage();
+            ciudadBindingSource = new BindingSource(components);
             tabControl1.SuspendLayout();
+            tabCiudades.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCiudades).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)ciudadBindingSource).BeginInit();
             SuspendLayout();
             // 
             // tabControl1
@@ -66,6 +80,12 @@
             // 
             // tabCiudades
             // 
+            tabCiudades.Controls.Add(btnActualizarTabla);
+            tabCiudades.Controls.Add(btnEditar);
+            tabCiudades.Controls.Add(btnEliminar);
+            tabCiudades.Controls.Add(btnInsertar);
+            tabCiudades.Controls.Add(lblCiudades);
+            tabCiudades.Controls.Add(dgvCiudades);
             tabCiudades.Location = new Point(4, 24);
             tabCiudades.Name = "tabCiudades";
             tabCiudades.Padding = new Padding(3);
@@ -73,6 +93,74 @@
             tabCiudades.TabIndex = 1;
             tabCiudades.Text = "Ciudades";
             tabCiudades.UseVisualStyleBackColor = true;
+            // 
+            // btnActualizarTabla
+            // 
+            btnActualizarTabla.Location = new Point(339, 304);
+            btnActualizarTabla.Name = "btnActualizarTabla";
+            btnActualizarTabla.Size = new Size(114, 23);
+            btnActualizarTabla.TabIndex = 5;
+            btnActualizarTabla.Text = "Actualizar Listado";
+            btnActualizarTabla.UseVisualStyleBackColor = true;
+            btnActualizarTabla.Click += btnActualizarTabla_Click;
+            // 
+            // btnEditar
+            // 
+            btnEditar.Enabled = false;
+            btnEditar.Location = new Point(170, 304);
+            btnEditar.Name = "btnEditar";
+            btnEditar.Size = new Size(75, 23);
+            btnEditar.TabIndex = 4;
+            btnEditar.Text = "Editar";
+            btnEditar.UseVisualStyleBackColor = true;
+            btnEditar.Click += button1_Click_2;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.Enabled = false;
+            btnEliminar.Location = new Point(89, 304);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(75, 23);
+            btnEliminar.TabIndex = 3;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
+            // 
+            // btnInsertar
+            // 
+            btnInsertar.Location = new Point(8, 304);
+            btnInsertar.Name = "btnInsertar";
+            btnInsertar.Size = new Size(75, 23);
+            btnInsertar.TabIndex = 2;
+            btnInsertar.Text = "Insertar";
+            btnInsertar.UseVisualStyleBackColor = true;
+            btnInsertar.Click += button1_Click_1;
+            // 
+            // lblCiudades
+            // 
+            lblCiudades.AutoSize = true;
+            lblCiudades.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblCiudades.Location = new Point(8, 20);
+            lblCiudades.Name = "lblCiudades";
+            lblCiudades.Size = new Size(155, 21);
+            lblCiudades.TabIndex = 1;
+            lblCiudades.Text = "Listado de ciudades";
+            // 
+            // dgvCiudades
+            // 
+            dgvCiudades.AllowUserToAddRows = false;
+            dgvCiudades.AllowUserToDeleteRows = false;
+            dgvCiudades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCiudades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCiudades.Location = new Point(8, 44);
+            dgvCiudades.MultiSelect = false;
+            dgvCiudades.Name = "dgvCiudades";
+            dgvCiudades.ReadOnly = true;
+            dgvCiudades.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCiudades.Size = new Size(445, 254);
+            dgvCiudades.TabIndex = 0;
+            dgvCiudades.CellContentClick += dataGridView1_CellContentClick;
+            dgvCiudades.SelectionChanged += dgvCiudades_SelectionChanged;
             // 
             // tabJugadores
             // 
@@ -114,6 +202,10 @@
             tabEstads.Text = "Estadísticas";
             tabEstads.UseVisualStyleBackColor = true;
             // 
+            // ciudadBindingSource
+            // 
+            ciudadBindingSource.DataSource = typeof(Modelos.Ciudad);
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -124,6 +216,10 @@
             Name = "Form1";
             Text = "Gestor de torneo";
             tabControl1.ResumeLayout(false);
+            tabCiudades.ResumeLayout(false);
+            tabCiudades.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)dgvCiudades).EndInit();
+            ((System.ComponentModel.ISupportInitialize)ciudadBindingSource).EndInit();
             ResumeLayout(false);
         }
 
@@ -136,5 +232,12 @@
         private TabPage tabEquipos;
         private TabPage tabJuegos;
         private TabPage tabEstads;
+        private DataGridView dgvCiudades;
+        private BindingSource ciudadBindingSource;
+        private Label lblCiudades;
+        private Button btnInsertar;
+        private Button btnEditar;
+        private Button btnEliminar;
+        private Button btnActualizarTabla;
     }
 }
