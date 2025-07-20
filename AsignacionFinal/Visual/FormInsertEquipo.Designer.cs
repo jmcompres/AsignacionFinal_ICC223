@@ -1,6 +1,6 @@
 ﻿namespace AsignacionFinal.Visual
 {
-    partial class FormInsertCiudad
+    partial class FormInsertEquipo
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInsertCiudad));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInsertEquipo));
             lblTitulo = new Label();
             lblId = new Label();
             lblNombre = new Label();
+            lblCiudad = new Label();
             txtId = new TextBox();
             txtNombre = new TextBox();
+            dgvCiudades = new DataGridView();
             btnAceptar = new Button();
             btnCancelar = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvCiudades).BeginInit();
             SuspendLayout();
             // 
             // lblTitulo
@@ -44,9 +47,9 @@
             lblTitulo.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitulo.Location = new Point(12, 9);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(111, 21);
+            lblTitulo.Size = new Size(113, 21);
             lblTitulo.TabIndex = 0;
-            lblTitulo.Text = "Nueva Ciudad";
+            lblTitulo.Text = "Nuevo Equipo";
             // 
             // lblId
             // 
@@ -66,13 +69,22 @@
             lblNombre.TabIndex = 2;
             lblNombre.Text = "Nombre :";
             // 
+            // lblCiudad
+            // 
+            lblCiudad.AutoSize = true;
+            lblCiudad.Location = new Point(18, 98);
+            lblCiudad.Name = "lblCiudad";
+            lblCiudad.Size = new Size(51, 15);
+            lblCiudad.TabIndex = 3;
+            lblCiudad.Text = "Ciudad :";
+            // 
             // txtId
             // 
             txtId.Location = new Point(75, 45);
             txtId.MaxLength = 3;
             txtId.Name = "txtId";
-            txtId.Size = new Size(71, 23);
-            txtId.TabIndex = 3;
+            txtId.Size = new Size(61, 23);
+            txtId.TabIndex = 4;
             txtId.TextChanged += txtId_TextChanged;
             // 
             // txtNombre
@@ -80,47 +92,65 @@
             txtNombre.Location = new Point(75, 70);
             txtNombre.MaxLength = 25;
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(152, 23);
-            txtNombre.TabIndex = 4;
+            txtNombre.Size = new Size(303, 23);
+            txtNombre.TabIndex = 5;
             txtNombre.TextChanged += txtNombre_TextChanged;
+            // 
+            // dgvCiudades
+            // 
+            dgvCiudades.AllowUserToAddRows = false;
+            dgvCiudades.AllowUserToDeleteRows = false;
+            dgvCiudades.AllowUserToResizeRows = false;
+            dgvCiudades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvCiudades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvCiudades.Location = new Point(75, 99);
+            dgvCiudades.MultiSelect = false;
+            dgvCiudades.Name = "dgvCiudades";
+            dgvCiudades.ReadOnly = true;
+            dgvCiudades.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvCiudades.Size = new Size(445, 254);
+            dgvCiudades.TabIndex = 6;
+            dgvCiudades.SelectionChanged += dgvCiudades_SelectionChanged;
             // 
             // btnAceptar
             // 
-            btnAceptar.Enabled = false;
-            btnAceptar.Location = new Point(93, 114);
+            btnAceptar.Location = new Point(100, 377);
             btnAceptar.Name = "btnAceptar";
             btnAceptar.Size = new Size(75, 23);
-            btnAceptar.TabIndex = 5;
+            btnAceptar.TabIndex = 7;
             btnAceptar.Text = "Aceptar";
             btnAceptar.UseVisualStyleBackColor = true;
             btnAceptar.Click += btnAceptar_Click;
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(12, 114);
+            btnCancelar.Location = new Point(18, 377);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(75, 23);
-            btnCancelar.TabIndex = 6;
+            btnCancelar.TabIndex = 8;
             btnCancelar.Text = "Cancelar";
             btnCancelar.UseVisualStyleBackColor = true;
             // 
-            // FormInsertCiudad
+            // FormInsertEquipo
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(331, 170);
+            ClientSize = new Size(557, 412);
             ControlBox = false;
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
+            Controls.Add(dgvCiudades);
             Controls.Add(txtNombre);
             Controls.Add(txtId);
+            Controls.Add(lblCiudad);
             Controls.Add(lblNombre);
             Controls.Add(lblId);
             Controls.Add(lblTitulo);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
-            Name = "FormInsertCiudad";
-            Text = "Insertar Ciudad";
+            Name = "FormInsertEquipo";
+            Text = "Nuevo Equipo";
+            ((System.ComponentModel.ISupportInitialize)dgvCiudades).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -130,8 +160,10 @@
         private Label lblTitulo;
         private Label lblId;
         private Label lblNombre;
+        private Label lblCiudad;
         private TextBox txtId;
         private TextBox txtNombre;
+        private DataGridView dgvCiudades;
         private Button btnAceptar;
         private Button btnCancelar;
     }
