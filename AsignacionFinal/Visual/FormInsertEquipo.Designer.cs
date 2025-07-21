@@ -44,55 +44,64 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitulo.Location = new Point(12, 9);
+            lblTitulo.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblTitulo.ForeColor = Color.White;
+            lblTitulo.Location = new Point(14, 12);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(113, 21);
+            lblTitulo.Size = new Size(145, 28);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Nuevo Equipo";
             // 
             // lblId
             // 
             lblId.AutoSize = true;
-            lblId.Location = new Point(46, 48);
+            lblId.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblId.ForeColor = Color.White;
+            lblId.Location = new Point(53, 64);
             lblId.Name = "lblId";
-            lblId.Size = new Size(23, 15);
+            lblId.Size = new Size(31, 20);
             lblId.TabIndex = 1;
             lblId.Text = "Id :";
             // 
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(12, 73);
+            lblNombre.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblNombre.ForeColor = Color.White;
+            lblNombre.Location = new Point(10, 97);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(57, 15);
+            lblNombre.Size = new Size(75, 20);
             lblNombre.TabIndex = 2;
             lblNombre.Text = "Nombre :";
             // 
             // lblCiudad
             // 
             lblCiudad.AutoSize = true;
-            lblCiudad.Location = new Point(18, 98);
+            lblCiudad.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblCiudad.ForeColor = Color.White;
+            lblCiudad.Location = new Point(21, 131);
             lblCiudad.Name = "lblCiudad";
-            lblCiudad.Size = new Size(51, 15);
+            lblCiudad.Size = new Size(65, 20);
             lblCiudad.TabIndex = 3;
             lblCiudad.Text = "Ciudad :";
             // 
             // txtId
             // 
-            txtId.Location = new Point(75, 45);
+            txtId.Location = new Point(86, 60);
+            txtId.Margin = new Padding(3, 4, 3, 4);
             txtId.MaxLength = 3;
             txtId.Name = "txtId";
-            txtId.Size = new Size(61, 23);
+            txtId.Size = new Size(69, 27);
             txtId.TabIndex = 4;
             txtId.TextChanged += txtId_TextChanged;
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(75, 70);
+            txtNombre.Location = new Point(86, 93);
+            txtNombre.Margin = new Padding(3, 4, 3, 4);
             txtNombre.MaxLength = 25;
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(303, 23);
+            txtNombre.Size = new Size(346, 27);
             txtNombre.TabIndex = 5;
             txtNombre.TextChanged += txtNombre_TextChanged;
             // 
@@ -103,39 +112,54 @@
             dgvCiudades.AllowUserToResizeRows = false;
             dgvCiudades.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvCiudades.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvCiudades.Location = new Point(75, 99);
+            dgvCiudades.Location = new Point(86, 132);
+            dgvCiudades.Margin = new Padding(3, 4, 3, 4);
             dgvCiudades.MultiSelect = false;
             dgvCiudades.Name = "dgvCiudades";
             dgvCiudades.ReadOnly = true;
+            dgvCiudades.RowHeadersWidth = 51;
             dgvCiudades.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCiudades.Size = new Size(445, 254);
+            dgvCiudades.Size = new Size(509, 339);
             dgvCiudades.TabIndex = 6;
             dgvCiudades.SelectionChanged += dgvCiudades_SelectionChanged;
             // 
             // btnAceptar
             // 
-            btnAceptar.Location = new Point(100, 377);
+            btnAceptar.BackColor = Color.FromArgb(64, 64, 64);
+            btnAceptar.FlatAppearance.BorderSize = 0;
+            btnAceptar.FlatStyle = FlatStyle.Flat;
+            btnAceptar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnAceptar.ForeColor = Color.White;
+            btnAceptar.Location = new Point(24, 503);
+            btnAceptar.Margin = new Padding(3, 4, 3, 4);
             btnAceptar.Name = "btnAceptar";
-            btnAceptar.Size = new Size(75, 23);
+            btnAceptar.Size = new Size(86, 31);
             btnAceptar.TabIndex = 7;
             btnAceptar.Text = "Aceptar";
-            btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.UseVisualStyleBackColor = false;
             btnAceptar.Click += btnAceptar_Click;
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(18, 377);
+            btnCancelar.BackColor = Color.FromArgb(64, 64, 64);
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Location = new Point(126, 503);
+            btnCancelar.Margin = new Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(75, 23);
+            btnCancelar.Size = new Size(86, 31);
             btnCancelar.TabIndex = 8;
             btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.UseVisualStyleBackColor = false;
             // 
             // FormInsertEquipo
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(557, 412);
+            BackColor = Color.Gray;
+            ClientSize = new Size(637, 549);
             ControlBox = false;
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
@@ -148,7 +172,9 @@
             Controls.Add(lblTitulo);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormInsertEquipo";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Nuevo Equipo";
             ((System.ComponentModel.ISupportInitialize)dgvCiudades).EndInit();
             ResumeLayout(false);

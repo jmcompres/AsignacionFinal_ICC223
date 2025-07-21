@@ -135,5 +135,19 @@ namespace AsignacionFinal.Visual
             dgv.ColumnHeadersDefaultCellStyle.BackColor = SystemColors.ControlDark;
             dgv.BackgroundColor = SystemColors.Control;
         }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            using (var pen = new Pen(Color.Black, 2))
+            {
+                e.Graphics.DrawRectangle(
+                    pen,
+                    1, 1,
+                    this.ClientSize.Width - 2,
+                    this.ClientSize.Height - 2
+                );
+            }
+        }
     }
 }

@@ -85,6 +85,20 @@ namespace AsignacionFinal.Visual
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            using (var pen = new Pen(Color.Black, 2))
+            {
+                e.Graphics.DrawRectangle(
+                    pen,
+                    1, 1,
+                    this.ClientSize.Width - 2,
+                    this.ClientSize.Height - 2
+                );
+            }
+        }
     }
 
 }

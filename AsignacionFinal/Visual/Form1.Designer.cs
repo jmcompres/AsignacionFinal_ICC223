@@ -136,10 +136,10 @@ namespace AsignacionFinal.Visual
             tabMenuPrincipal.Controls.Add(btnConsultarResumen);
             tabMenuPrincipal.Controls.Add(lblIdResumen);
             tabMenuPrincipal.Controls.Add(lblTituloResumenJuego);
-            tabMenuPrincipal.Location = new Point(304, 4);
+            tabMenuPrincipal.Location = new Point(5, 4);
             tabMenuPrincipal.Name = "tabMenuPrincipal";
             tabMenuPrincipal.Padding = new Padding(3);
-            tabMenuPrincipal.Size = new Size(1616, 967);
+            tabMenuPrincipal.Size = new Size(1915, 967);
             tabMenuPrincipal.TabIndex = 0;
             tabMenuPrincipal.Text = "Resúmenes de juegos";
             // 
@@ -217,11 +217,11 @@ namespace AsignacionFinal.Visual
             tabCiudades.Controls.Add(btnInsertar);
             tabCiudades.Controls.Add(lblCiudades);
             tabCiudades.Controls.Add(dgvCiudades);
-            tabCiudades.Location = new Point(304, 4);
+            tabCiudades.Location = new Point(5, 4);
             tabCiudades.Margin = new Padding(3, 4, 3, 4);
             tabCiudades.Name = "tabCiudades";
             tabCiudades.Padding = new Padding(3, 4, 3, 4);
-            tabCiudades.Size = new Size(1616, 967);
+            tabCiudades.Size = new Size(1915, 967);
             tabCiudades.TabIndex = 1;
             tabCiudades.Text = "Ciudades";
             // 
@@ -321,11 +321,11 @@ namespace AsignacionFinal.Visual
             tabJugadores.Controls.Add(btnEliminarJugador);
             tabJugadores.Controls.Add(btnEditarJugador);
             tabJugadores.Controls.Add(btnInsertarJugador);
-            tabJugadores.Location = new Point(304, 4);
+            tabJugadores.Location = new Point(5, 4);
             tabJugadores.Margin = new Padding(3, 4, 3, 4);
             tabJugadores.Name = "tabJugadores";
             tabJugadores.Padding = new Padding(3, 4, 3, 4);
-            tabJugadores.Size = new Size(1616, 967);
+            tabJugadores.Size = new Size(1915, 967);
             tabJugadores.TabIndex = 2;
             tabJugadores.Text = "Jugadores";
             // 
@@ -410,11 +410,11 @@ namespace AsignacionFinal.Visual
             tabEquipos.Controls.Add(btnInsertarEquipo);
             tabEquipos.Controls.Add(dgvEquipos);
             tabEquipos.Controls.Add(lblTituloEquipos);
-            tabEquipos.Location = new Point(304, 4);
+            tabEquipos.Location = new Point(5, 4);
             tabEquipos.Margin = new Padding(3, 4, 3, 4);
             tabEquipos.Name = "tabEquipos";
             tabEquipos.Padding = new Padding(3, 4, 3, 4);
-            tabEquipos.Size = new Size(1616, 967);
+            tabEquipos.Size = new Size(1915, 967);
             tabEquipos.TabIndex = 3;
             tabEquipos.Text = "Equipos";
             // 
@@ -508,11 +508,11 @@ namespace AsignacionFinal.Visual
             tabJuegos.Controls.Add(btnInsertarJuego);
             tabJuegos.Controls.Add(dgvJuegos);
             tabJuegos.Controls.Add(lblTituloJuegos);
-            tabJuegos.Location = new Point(304, 4);
+            tabJuegos.Location = new Point(5, 4);
             tabJuegos.Margin = new Padding(3, 4, 3, 4);
             tabJuegos.Name = "tabJuegos";
             tabJuegos.Padding = new Padding(3, 4, 3, 4);
-            tabJuegos.Size = new Size(1616, 967);
+            tabJuegos.Size = new Size(1915, 967);
             tabJuegos.TabIndex = 4;
             tabJuegos.Text = "Juegos";
             // 
@@ -641,9 +641,9 @@ namespace AsignacionFinal.Visual
             // 
             // spnCantEstad
             // 
-            spnCantEstad.BackColor = Color.FromArgb(64, 64, 64);
-            spnCantEstad.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            spnCantEstad.ForeColor = Color.White;
+            spnCantEstad.BackColor = Color.White;
+            spnCantEstad.Font = new Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            spnCantEstad.ForeColor = Color.Black;
             spnCantEstad.Location = new Point(1229, 674);
             spnCantEstad.Maximum = new decimal(new int[] { int.MaxValue, 0, 0, 0 });
             spnCantEstad.Name = "spnCantEstad";

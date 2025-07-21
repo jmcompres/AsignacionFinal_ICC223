@@ -41,74 +41,98 @@
             // lblTitulo
             // 
             lblTitulo.AutoSize = true;
-            lblTitulo.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitulo.Location = new Point(12, 9);
+            lblTitulo.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblTitulo.ForeColor = Color.White;
+            lblTitulo.Location = new Point(14, 12);
             lblTitulo.Name = "lblTitulo";
-            lblTitulo.Size = new Size(111, 21);
+            lblTitulo.Size = new Size(144, 28);
             lblTitulo.TabIndex = 0;
             lblTitulo.Text = "Nueva Ciudad";
             // 
             // lblId
             // 
             lblId.AutoSize = true;
-            lblId.Location = new Point(46, 48);
+            lblId.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblId.ForeColor = Color.White;
+            lblId.Location = new Point(53, 64);
             lblId.Name = "lblId";
-            lblId.Size = new Size(23, 15);
+            lblId.Size = new Size(31, 20);
             lblId.TabIndex = 1;
             lblId.Text = "Id :";
             // 
             // lblNombre
             // 
             lblNombre.AutoSize = true;
-            lblNombre.Location = new Point(12, 73);
+            lblNombre.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblNombre.ForeColor = Color.White;
+            lblNombre.Location = new Point(10, 97);
             lblNombre.Name = "lblNombre";
-            lblNombre.Size = new Size(57, 15);
+            lblNombre.Size = new Size(75, 20);
             lblNombre.TabIndex = 2;
             lblNombre.Text = "Nombre :";
             // 
             // txtId
             // 
-            txtId.Location = new Point(75, 45);
+            txtId.Location = new Point(86, 60);
+            txtId.Margin = new Padding(3, 4, 3, 4);
             txtId.MaxLength = 3;
             txtId.Name = "txtId";
-            txtId.Size = new Size(71, 23);
+            txtId.Size = new Size(81, 27);
             txtId.TabIndex = 3;
             txtId.TextChanged += txtId_TextChanged;
             // 
             // txtNombre
             // 
-            txtNombre.Location = new Point(75, 70);
+            txtNombre.Location = new Point(86, 93);
+            txtNombre.Margin = new Padding(3, 4, 3, 4);
             txtNombre.MaxLength = 25;
             txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(152, 23);
+            txtNombre.Size = new Size(173, 27);
             txtNombre.TabIndex = 4;
             txtNombre.TextChanged += txtNombre_TextChanged;
             // 
             // btnAceptar
             // 
+            btnAceptar.BackColor = Color.FromArgb(64, 64, 64);
             btnAceptar.Enabled = false;
-            btnAceptar.Location = new Point(93, 114);
+            btnAceptar.FlatAppearance.BorderSize = 0;
+            btnAceptar.FlatStyle = FlatStyle.Flat;
+            btnAceptar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnAceptar.ForeColor = Color.White;
+            btnAceptar.Location = new Point(18, 152);
+            btnAceptar.Margin = new Padding(3, 4, 3, 4);
             btnAceptar.Name = "btnAceptar";
-            btnAceptar.Size = new Size(75, 23);
+            btnAceptar.Size = new Size(86, 31);
             btnAceptar.TabIndex = 5;
             btnAceptar.Text = "Aceptar";
-            btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.UseVisualStyleBackColor = false;
             btnAceptar.Click += btnAceptar_Click;
+            btnAceptar.FlatStyle = FlatStyle.Flat;
+            btnAceptar.FlatAppearance.BorderSize = 0;
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(12, 114);
+            btnCancelar.BackColor = Color.FromArgb(64, 64, 64);
+            btnCancelar.FlatAppearance.BorderSize = 0;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnCancelar.ForeColor = Color.White;
+            btnCancelar.Location = new Point(119, 152);
+            btnCancelar.Margin = new Padding(3, 4, 3, 4);
             btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(75, 23);
+            btnCancelar.Size = new Size(86, 31);
             btnCancelar.TabIndex = 6;
             btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.UseVisualStyleBackColor = false;
+            btnCancelar.FlatStyle = FlatStyle.Flat;
+            btnCancelar.FlatAppearance.BorderSize = 0;
             // 
             // FormInsertCiudad
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(331, 170);
+            BackColor = Color.Gray;
+            ClientSize = new Size(378, 227);
             ControlBox = false;
             Controls.Add(btnCancelar);
             Controls.Add(btnAceptar);
@@ -119,7 +143,9 @@
             Controls.Add(lblTitulo);
             FormBorderStyle = FormBorderStyle.None;
             Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
             Name = "FormInsertCiudad";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Insertar Ciudad";
             ResumeLayout(false);
             PerformLayout();

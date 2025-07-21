@@ -115,10 +115,10 @@ namespace AsignacionFinal.Visual
             if (dgvEquipos.Columns.Contains("Nombre"))
                 dgvEquipos.Columns["Nombre"].HeaderText = "Nombre Equipo";
 
-            if (dgvCiudades.Columns.Contains("IdCiudad"))
-                dgvCiudades.Columns["IdCiudad"].HeaderText = "ID Ciudad";
-            if (dgvCiudades.Columns.Contains("NombreCiudad"))
-                dgvCiudades.Columns["NombreCiudad"].HeaderText = "Nombre Ciudad";
+			if (dgvCiudades.Columns.Contains("IdCiudad"))
+				dgvCiudades.Columns["IdCiudad"].HeaderText = "ID Ciudad";
+			if (dgvCiudades.Columns.Contains("NombreCiudad"))
+				dgvCiudades.Columns["NombreCiudad"].HeaderText = "Nombre Ciudad";
 
             // Selecciona la fila completa (ambas columnas) en ambos DataGridView
             dgvEquipos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -245,6 +245,21 @@ namespace AsignacionFinal.Visual
                 {
                     MessageBox.Show("No se pudo insertar el jugador. Verifique los datos.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        protected override void OnPaint(PaintEventArgs e)
+        {
+            base.OnPaint(e);
+            // Dibuja un borde negro de 2px alrededor del formulario
+            using (var pen = new Pen(Color.Black, 2))
+            {
+                e.Graphics.DrawRectangle(
+                    pen,
+                    1, 1,
+                    this.ClientSize.Width - 2,
+                    this.ClientSize.Height - 2
+                );
             }
         }
     }
