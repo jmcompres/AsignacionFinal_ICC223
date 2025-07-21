@@ -24,10 +24,10 @@ namespace AsignacionFinal.Visual
                 btnInsertarJugador, btnEliminarJugador, btnActualizarListaJugadores,
                 btnInsertarJuego, btnEliminarJuego,
                 btnActualizarTabla, btnEliminar, btnEditar,btnInsertar,btnEditarJugador,btnEditarEquipo, btnEditarJuego,
-                btnActualizarListadoJuegos
+                btnActualizarListadoJuegos, btnConsultarResumen, btnActualizarEstadJuego, btnMenuPrincipal
             })
             {
-                if (btn is Button b)
+                if (btn is System.Windows.Forms.Button b)
                 {
                     b.FlatStyle = FlatStyle.Flat;
                     b.FlatAppearance.BorderSize = 0;
@@ -561,6 +561,7 @@ namespace AsignacionFinal.Visual
         private void btnEstadisticas_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 5;
+        }
 
         private void btnConsultarResumen_Click(object sender, EventArgs e)
         {
@@ -693,7 +694,7 @@ namespace AsignacionFinal.Visual
                         dgvJugadorPEstad.SelectedRows[0].Cells["IdJugador"].Value.ToString().Trim(),
                         Convert.ToInt32(spnCantEstad.Value)
                      );
-                
+
             }
             else if (Convert.ToInt32(spnCantEstad.Value) == 0)
             {
@@ -728,5 +729,7 @@ namespace AsignacionFinal.Visual
                                 MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
     }
 }
