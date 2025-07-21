@@ -10,7 +10,26 @@ namespace AsignacionFinal.Visual
         public Form1()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeAllData();
+
+            foreach (var btn in new[] {
+                btnMenuPrincipal, btnCiudades, btnJugadores, btnEquipos, btnJuegos, btnEstadisticas,
+                btnInsertarEquipo, btnEliminarEquipo, btnActualizarListEquipos,
+                btnInsertarJugador, btnEliminarJugador, btnActualizarListaJugadores,
+                btnInsertarJuego, btnEliminarJuego,
+                btnActualizarTabla, btnEliminar, btnEditar,btnInsertar,btnEditarJugador,btnEditarEquipo, btnEditarJuego,
+                btnActualizarListadoJuegos
+            })
+            {
+                if (btn is Button b)
+                {
+                    b.FlatStyle = FlatStyle.Flat;
+                    b.FlatAppearance.BorderSize = 0;
+                }
+            }
         }
 
         private void InitializeAllData()
@@ -222,7 +241,7 @@ namespace AsignacionFinal.Visual
             );
 
             // Abrir el formulario de edición y pre‑llenar
-            using var frm = new FormInsertJuego(fechaYHora,"Editar Juego", id, descripcion, idEqA,idEqB);
+            using var frm = new FormInsertJuego(fechaYHora, "Editar Juego", id, descripcion, idEqA, idEqB);
 
             if (frm.ShowDialog() == DialogResult.OK && frm.juego != null)
             {
@@ -501,5 +520,39 @@ namespace AsignacionFinal.Visual
             return dt.ToString("dd/MM/yyyy HH:mm");
         }
 
+        private void tabMenuPrincipal_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnMenuPrincipal_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 0;
+        }
+
+        private void btnCiudades_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 1;
+        }
+
+        private void btnJugadores_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 2;
+        }
+
+        private void btnEquipos_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 3;
+        }
+
+        private void btnJuegos_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 4;
+        }
+
+        private void btnEstadisticas_Click(object sender, EventArgs e)
+        {
+            tabControl1.SelectedIndex = 5;
+        }
     }
 }
