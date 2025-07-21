@@ -2,11 +2,14 @@
 using System.Data;
 using System.Globalization;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace AsignacionFinal.Visual
 {
     public partial class Form1 : Form
     {
+        private int prevValCantEstad;
+
         public Form1()
         {
             InitializeComponent();
@@ -30,6 +33,8 @@ namespace AsignacionFinal.Visual
                     b.FlatAppearance.BorderSize = 0;
                 }
             }
+            initResumen();
+            initCmbTipoEstad();
         }
 
         private void InitializeAllData()
@@ -52,6 +57,8 @@ namespace AsignacionFinal.Visual
         private void loadDataJuego()
         {
             dgvJuegos.DataSource = JuegoRepository.GetAll();
+            dgvJuegoPEstad.DataSource = JuegoRepository.GetAll();
+            updateCmbResumen();
         }
 
         private void loadDataJugador()
@@ -520,6 +527,7 @@ namespace AsignacionFinal.Visual
             return dt.ToString("dd/MM/yyyy HH:mm");
         }
 
+
         private void tabMenuPrincipal_Click(object sender, EventArgs e)
         {
 
@@ -553,6 +561,172 @@ namespace AsignacionFinal.Visual
         private void btnEstadisticas_Click(object sender, EventArgs e)
         {
             tabControl1.SelectedIndex = 5;
+
+        private void btnConsultarResumen_Click(object sender, EventArgs e)
+        {
+            dgvResumen.DataSource = JuegoRepository.GetResumenJuego(cmbIdJuegoResumen.SelectedValue.ToString().Trim());
+            if (dgvResumen.Rows.Count == 0)
+            {
+                MessageBox.Show("No se encontraron resultados para el ID de juego proporcionado.", "Información",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                dgvResumen.Visible = false;
+            }
+            else
+            {
+                dgvResumen.ClearSelection();
+                dgvResumen.Visible = true;
+            }
+        }
+
+        private void initResumen()
+        {
+            dgvResumen.ReadOnly = true; // Evita edición
+            dgvResumen.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dgvResumen.ClearSelection();
+            dgvResumen.CurrentCell = null;
+            dgvResumen.MultiSelect = false;
+
+            dgvResumen.DataSource = AsignacionFinal.BDD.JuegoRepository.GetResumenJuego("");
+
+            // Evita selección al hacer clic o usar teclas
+            dgvResumen.SelectionChanged += (s, e) => dgvResumen.ClearSelection();
+            dgvResumen.KeyDown += (s, e) => e.Handled = true;
+
+            var colFija = dgvResumen.Columns[" "]; //" " es el nombre de la primera columna
+            colFija.Width = 300;
+            colFija.Resizable = DataGridViewTriState.False;
+            colFija.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+            // Las demás se ajustan
+            foreach (DataGridViewColumn col in dgvResumen.Columns)
+            {
+                if (col.Name != "ID")
+                {
+                    col.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                }
+            }
+
+            updateCmbResumen();
+        }
+
+        private void cmbIdJuegoResumen_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbIdJuegoResumen.SelectedIndex < 0) btnConsultarResumen.Enabled = false;
+            else btnConsultarResumen.Enabled = true;
+        }
+
+        private void updateCmbResumen()
+        {
+            cmbIdJuegoResumen.DataSource = JuegoRepository.GetAll();
+            cmbIdJuegoResumen.DisplayMember = "ID";     // Lo que se ve en la lista
+            cmbIdJuegoResumen.ValueMember = "ID";
+            cmbIdJuegoResumen.SelectedIndex = -1;
+            dgvResumen.Visible = false;
+        }
+
+        private void initCmbTipoEstad()
+        {
+            cmbTipoEstad.DataSource = EstadsRepository.GetAll();
+            cmbTipoEstad.DisplayMember = "Descripcion";     // Lo que se ve en la lista
+            cmbTipoEstad.ValueMember = "IdEstadistica";
+            cmbIdJuegoResumen.SelectedIndex = -1;
+        }
+
+        private void dgvJuegoPEstad_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvJuegoPEstad.SelectedRows.Count <= 0)
+            {
+                dgvJugadorPEstad.DataSource = null;
+                dgvJugadorPEstad.Enabled = false;
+                dgvJugadorPEstad.ClearSelection();
+            }
+            else
+            {
+                dgvJugadorPEstad.Enabled = true;
+                dgvJugadorPEstad.DataSource = JuegoRepository.GetJugadoresJuego(
+                    dgvJuegoPEstad.SelectedRows[0].Cells["ID"].Value.ToString().Trim()
+                );
+            }
+        }
+
+        private void dgvJugadorPEstad_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvJugadorPEstad.SelectedRows.Count == 0)
+            {
+                cmbTipoEstad.SelectedIndex = -1;
+                cmbTipoEstad.Enabled = false;
+            }
+            else cmbTipoEstad.Enabled = true;
+        }
+
+        private void cmbTipoEstad_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbTipoEstad.SelectedIndex >= 0 && dgvJuegoPEstad.Rows.Count > 0 && dgvJugadorPEstad.Rows.Count > 0)
+            {
+                prevValCantEstad = EstadsRepository.getCantEstadJuego(
+                    dgvJuegoPEstad.SelectedRows[0].Cells["ID"].Value.ToString().Trim(),
+                    cmbTipoEstad.SelectedValue.ToString().Trim(),
+                    dgvJugadorPEstad.SelectedRows[0].Cells["IdJugador"].Value.ToString().Trim()
+                );
+                spnCantEstad.Value = prevValCantEstad;
+                spnCantEstad.Enabled = true;
+            }
+            else spnCantEstad.Enabled = false;
+        }
+
+        private void spnCantEstad_ValueChanged(object sender, EventArgs e)
+        {
+            if (spnCantEstad.Enabled == true && spnCantEstad.Value != prevValCantEstad)
+                btnActualizarEstadJuego.Enabled = true;
+            else btnActualizarEstadJuego.Enabled = false;
+        }
+
+        private void btnActualizarEstadJuego_Click(object sender, EventArgs e)
+        {
+            bool exito = true;
+
+            if (prevValCantEstad == 0)
+            {
+                exito = EstadsRepository.Insert(
+                        dgvJuegoPEstad.SelectedRows[0].Cells["ID"].Value.ToString().Trim(),
+                        cmbTipoEstad.SelectedValue.ToString().Trim(),
+                        dgvJugadorPEstad.SelectedRows[0].Cells["IdJugador"].Value.ToString().Trim(),
+                        Convert.ToInt32(spnCantEstad.Value)
+                     );
+                
+            }
+            else if (Convert.ToInt32(spnCantEstad.Value) == 0)
+            {
+                exito = EstadsRepository.Delete(
+                        dgvJuegoPEstad.SelectedRows[0].Cells["ID"].Value.ToString().Trim(),
+                        cmbTipoEstad.SelectedValue.ToString().Trim(),
+                        dgvJugadorPEstad.SelectedRows[0].Cells["IdJugador"].Value.ToString().Trim()
+                     );
+            }
+            else
+            {
+                exito = EstadsRepository.Update(
+                        dgvJuegoPEstad.SelectedRows[0].Cells["ID"].Value.ToString().Trim(),
+                        cmbTipoEstad.SelectedValue.ToString().Trim(),
+                        dgvJugadorPEstad.SelectedRows[0].Cells["IdJugador"].Value.ToString().Trim(),
+                        Convert.ToInt32(spnCantEstad.Value)
+                     );
+            }
+
+
+            if (exito)
+            {
+                updateCmbResumen();
+                MessageBox.Show("Estadística de juego actualizada correctamente", "Éxito",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                prevValCantEstad = Convert.ToInt32(spnCantEstad.Value);
+                btnActualizarEstadJuego.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("No se pudo actualizar la estadística de juego.", "Error",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
