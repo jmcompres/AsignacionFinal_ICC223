@@ -513,6 +513,8 @@ namespace AsignacionFinal.Visual
             string[] formatosEntrada = {
                 "d/M/yyyy h:mm:ss tt",
                 "dd/MM/yyyy h:mm:ss tt",
+                "M/d/yyyy h:mm:ss tt",    
+                "MM/dd/yyyy hh:mm:ss tt"
             };
 
             var culturaEs = CultureInfo.GetCultureInfo("es-ES");
