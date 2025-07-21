@@ -510,23 +510,41 @@ namespace AsignacionFinal.Visual
         //Funciones de utilidades varias
         public static string transformarHora(string input)
         {
-            string[] formatosEntrada = {
+            var formatosEs = new[]
+            {
                 "d/M/yyyy h:mm:ss tt",
-                "dd/MM/yyyy h:mm:ss tt",
-                "M/d/yyyy h:mm:ss tt",    
+                "dd/MM/yyyy h:mm:ss tt"
+            };
+
+            var formatosEn = new[]
+            {
+                "M/d/yyyy h:mm:ss tt",
                 "MM/dd/yyyy hh:mm:ss tt"
             };
 
-            var culturaEs = CultureInfo.GetCultureInfo("es-ES");
+            DateTime dt;
 
-            DateTime dt = DateTime.ParseExact(
-                input.Trim(),
-                formatosEntrada,
-                culturaEs,
-                DateTimeStyles.None
-            );
+            if (DateTime.TryParseExact(
+                    input,
+                    formatosEs,
+                    CultureInfo.GetCultureInfo("es-ES"),
+                    DateTimeStyles.None,
+                    out dt))
+            {
+                return dt.ToString("dd/MM/yyyy HH:mm");
+            }
 
-            return dt.ToString("dd/MM/yyyy HH:mm");
+            if (DateTime.TryParseExact(
+                    input,
+                    formatosEn,
+                    CultureInfo.GetCultureInfo("en-US"),
+                    DateTimeStyles.None,
+                    out dt))
+            {
+                return dt.ToString("dd/MM/yyyy HH:mm");
+            }
+
+            throw new FormatException($"No se pudo parsear la fecha/hora: '{input}'.");
         }
 
 
