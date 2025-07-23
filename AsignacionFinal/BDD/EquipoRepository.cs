@@ -111,5 +111,28 @@ namespace AsignacionFinal.BDD
 
             return idCiudad;
         }
+
+        public static bool existNumEnEquipo(string idEquipo, string num)
+        {
+            try
+            {
+                using var conn = new SqlConnection(ConfigHelper.ConnectionString);
+                using var cmd = new SqlCommand("SELECT '' " +
+                                               "FROM Equipo as eq " +
+                                               "JOIN Jugador as j ON eq.IdEquipo = j.IdEquipo " +
+                                               "WHERE eq.IdEquipo = @ie " +
+                                               "AND RTRIM(j.NumJugador) = RTRIM(@nj)", conn);
+                cmd.Parameters.AddWithValue("@ie", idEquipo);
+                cmd.Parameters.AddWithValue("@nj", num);
+                conn.Open();
+                using var rdr = cmd.ExecuteReader();
+                return rdr.HasRows;
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine("Error: " + exc.Message);
+                return false;
+            }
+        }
     }
 }

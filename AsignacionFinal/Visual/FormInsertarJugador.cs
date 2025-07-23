@@ -176,7 +176,8 @@ namespace AsignacionFinal.Visual
                 !string.IsNullOrWhiteSpace(txtNumero.Text) &&
                 !string.IsNullOrWhiteSpace(txtNombre.Text) &&
                 dgvEquipos.CurrentRow != null &&
-                dgvCiudades.CurrentRow != null;
+                dgvCiudades.CurrentRow != null &&
+                !EquipoRepository.existNumEnEquipo(dgvEquipos.CurrentRow.Cells["ID"].Value?.ToString(), txtNumero.Text);
 
             btnInsertar.Enabled = camposLlenos;
         }
