@@ -750,6 +750,9 @@ namespace AsignacionFinal.Visual
             }
         }
 
-
+        private void btnActualizarListadoJuegos_Click(object sender, EventArgs e)
+        {
+            loadDataJuego();
+        }
     }
 }
