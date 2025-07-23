@@ -121,7 +121,7 @@ namespace AsignacionFinal.BDD
                                                "FROM Equipo as eq " +
                                                "JOIN Jugador as j ON eq.IdEquipo = j.IdEquipo " +
                                                "WHERE eq.IdEquipo = @ie " +
-                                               "AND RTRIM(j.NumJugador) = RTRIM(@nj)", conn);
+                                               "AND CAST(j.NumJugador AS INT) = CAST(@nj AS INT)", conn);
                 cmd.Parameters.AddWithValue("@ie", idEquipo);
                 cmd.Parameters.AddWithValue("@nj", num);
                 conn.Open();
