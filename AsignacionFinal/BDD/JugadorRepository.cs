@@ -100,5 +100,25 @@ namespace AsignacionFinal.BDD
                 return false;
             }
         }
+
+        public static bool existEstadParaJugador(string idJugador)
+        {
+            try
+            {
+                using var conn = new SqlConnection(ConfigHelper.ConnectionString);
+                using var cmd = new SqlCommand("SELECT '' " +
+                                               "FROM EstadJuego as ej " +
+                                               "WHERE RTRIM(ej.IdJugador) = RTRIM(@ij) ", conn);
+                cmd.Parameters.AddWithValue("@ij", idJugador);
+                conn.Open();
+                using var rdr = cmd.ExecuteReader();
+                return rdr.HasRows;
+            }
+            catch (Exception exc)
+            {
+                Console.WriteLine("Error: " + exc.Message);
+                return false;
+            }
+        }
     }
 }
