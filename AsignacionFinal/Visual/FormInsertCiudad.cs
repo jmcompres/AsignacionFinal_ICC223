@@ -30,6 +30,7 @@ namespace AsignacionFinal.Visual
             else lblTitulo.Text = "Nueva Ciudad";
             txtId.Text = id;
             txtNombre.Text = nombre;
+            txtId.KeyPress += TxtSoloLetrasYNumeros_KeyPress;
         }
 
         private void txtId_TextChanged(object sender, EventArgs e)
@@ -51,6 +52,14 @@ namespace AsignacionFinal.Visual
         private void txtNombre_TextChanged(object sender, EventArgs e)
         {
             btnAceptar.Enabled = txtId.Text.Trim() != "" && txtNombre.Text.Trim() != "";
+        }
+
+        private void TxtSoloLetrasYNumeros_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)

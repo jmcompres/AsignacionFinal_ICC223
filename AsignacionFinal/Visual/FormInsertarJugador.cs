@@ -23,7 +23,6 @@ namespace AsignacionFinal.Visual
             dtpFechaNacim.Format = DateTimePickerFormat.Custom;
             dtpFechaNacim.CustomFormat = "MM/dd/yyyy";
             CargarDatosTablas();
-            // Suscribir eventos para validar campos
             txtId.TextChanged += ValidarCampos;
             txtNumero.TextChanged += ValidarCampos;
             txtNombre.TextChanged += ValidarCampos;
@@ -31,12 +30,12 @@ namespace AsignacionFinal.Visual
             dgvCiudades.SelectionChanged += ValidarCampos;
             txtNumero.KeyPress += TxtSoloNumeros_KeyPress;
             txtNombre.KeyPress += TxtSoloLetras_KeyPress;
+            txtId.KeyPress += TxtSoloLetrasYNumeros_KeyPress; 
             ValidarCampos(null, null);
         }
 
         private void TxtSoloNumeros_KeyPress(object sender, KeyPressEventArgs e)
         {
-            // Permite solo dígitos y teclas de control (como backspace)
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
@@ -47,6 +46,15 @@ namespace AsignacionFinal.Visual
         {
             // Permite solo letras, espacios y teclas de control
             if (!char.IsControl(e.KeyChar) && !char.IsLetter(e.KeyChar) && e.KeyChar != ' ')
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TxtSoloLetrasYNumeros_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Permite solo letras, números y teclas de control (como backspace)
+            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
