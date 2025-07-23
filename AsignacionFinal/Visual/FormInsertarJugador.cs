@@ -89,6 +89,8 @@ namespace AsignacionFinal.Visual
                     break;
                 }
             }
+
+            if (JugadorRepository.existEstadParaJugador(txtId.Text)) deshabilitarDGV(dgvEquipos);
         }
 
         private void CargarDatosTablas()
@@ -262,6 +264,15 @@ namespace AsignacionFinal.Visual
                     this.ClientSize.Height - 2
                 );
             }
+        }
+
+        private void deshabilitarDGV(DataGridView dgv)
+        {
+            dgv.Enabled = false;
+            dgv.DefaultCellStyle.BackColor = SystemColors.Control; // gris claro típico
+            dgv.DefaultCellStyle.ForeColor = SystemColors.GrayText;
+            dgv.ColumnHeadersDefaultCellStyle.BackColor = SystemColors.ControlDark;
+            dgv.BackgroundColor = SystemColors.Control;
         }
     }
 }
