@@ -76,6 +76,8 @@ namespace AsignacionFinal.Visual
             txtId.Text = id;
             txtDescripcion.Text = descripcion;
             pickFechaYHora.Value = fechaYHora;
+
+            txtId.KeyPress += TxtSoloLetrasYNumeros_KeyPress;
         }
 
         private void lblFecha_Click(object sender, EventArgs e)
@@ -147,6 +149,14 @@ namespace AsignacionFinal.Visual
                     this.ClientSize.Width - 2,
                     this.ClientSize.Height - 2
                 );
+            }
+        }
+
+        private void TxtSoloLetrasYNumeros_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar))
+            {
+                e.Handled = true;
             }
         }
     }

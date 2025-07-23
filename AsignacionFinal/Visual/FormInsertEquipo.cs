@@ -50,6 +50,7 @@ namespace AsignacionFinal.Visual
             txtId.Text = id;
             txtNombre.Text = nombre;
 
+            txtId.KeyPress += TxtSoloLetrasYNumeros_KeyPress;
         }
 
         private void verify()
@@ -84,6 +85,14 @@ namespace AsignacionFinal.Visual
             };
             this.DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void TxtSoloLetrasYNumeros_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsLetterOrDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)
